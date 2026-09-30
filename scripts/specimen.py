@@ -91,7 +91,7 @@ def render():
         if upper in 'ӨҮ':d.rectangle((x-5,y-4,x+211,y+168),fill=WASH)
         draw_text(im,(x+12,y+10),upper+lower,154)
         d.text((x+12,y+145),f'U+{ord(upper):04X} / U+{ord(lower):04X}',font=label(15),fill=QUIET)
-    draw_text(im,(50,1134),'Өө Оо    Үү Уу    Ии Йй    Её Ёе    10 000 ₮',75)
+    draw_text(im,(50,1134),'Өө Оо    Үү Уу    Ии Йй    Ее Ёё    10 000 ₮',75)
     d.text((50,1220),'Modern Cyrillic only. Traditional vertical Mongolian is outside this release.',font=label(17),fill=QUIET)
     save(im,OUT/'cyrillic.png')
     im=Image.new('RGB',(1680,1100),'white');d=ImageDraw.Draw(im)
