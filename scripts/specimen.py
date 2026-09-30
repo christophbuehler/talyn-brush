@@ -79,7 +79,7 @@ def render():
     for i in range(0,len(cps),384):
         part=cps[i:i+384];filename=f'charset-{i//384+1:02d}.png'
         save(sheet(part,24,80,82,f'Talyn Brush / Character set {i//384+1:02d}',
-                   f'U+{part[0]:04X} to U+{part[-1]:04X} — {len(part)} mappings. Pale blue = added to the original font.'),OUT/'pages'/filename)
+                   f'U+{part[0]:04X} to U+{part[-1]:04X} / {len(part)} mappings. Pale blue = added to the original font.'),OUT/'pages'/filename)
         pages.append({'file':filename,'first':f'U+{part[0]:04X}','last':f'U+{part[-1]:04X}','count':len(part)})
     (OUT/'coverage.json').write_text(json.dumps({'count':len(cps),'renderer':'FreeType; direct character mapping; no fallback',
                                                'pages':pages,'characters':manifest},ensure_ascii=False,indent=2)+'\n')
