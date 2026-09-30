@@ -1,0 +1,30 @@
+FONTLOG for Talyn Brush
+
+Talyn Brush is an independent modified version of Nanum Brush Script.
+It is distributed under the SIL Open Font License 1.1. See OFL.txt.
+
+2026-10-01 — Talyn Brush 0.100 (release tag v0.1.0; preview)
+- Preserved the exact user-supplied original TTF and OFL in upstream/.
+- Preserved all 11,789 original Unicode mappings and every original glyph
+  outline, advance width, sidebearing, hinting program, and GSUB rule.
+- Added all 35 Mongolian Cyrillic letters in both cases (70 mappings),
+  including barred O and straight U. Also covers the modern Russian alphabet.
+- Added combining breve and diaeresis, nonbreaking space, and tugrik sign.
+- Added mark attachment and selected Cyrillic kerning pairs.
+- Renamed primary font names to Talyn Brush / TalynBrush-Regular, respecting
+  all original Reserved Font Names. Preserved original copyright and trademark
+  attribution; embedded the full OFL and added derivative copyright notices.
+- Added reproducible TTF/WOFF2 builds, outline recipes and SVG proofs, tests,
+  complete character atlas, public specimen site, and automated release CI.
+- Preview status: automated tests and visual inspection completed. Independent
+  native Mongolian/type-designer review has not yet been completed.
+- Traditional vertical Mongolian is not included.
+
+Original work: Copyright (c) 2010 NHN Corporation.
+Font design: Sandoll Communications Inc.; original name table credits
+Kwak Doo-yul and Nicolas Noh.
+
+Cyrillic extensions and build tooling: Copyright (c) 2026 Christoph Bühler.
+No endorsement by the original authors is claimed.
+
+Project: https://github.com/christophbuehler/talyn-brush

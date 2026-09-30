@@ -1,0 +1,533 @@
+{
+  "family": "Talyn Brush",
+  "version": "0.100",
+  "upstream_sha256": "98e3c5323f813ff6a61486af27aa49073262686bf336eacb77b024fa624254bf",
+  "original_characters": 11789,
+  "characters": 11863,
+  "added_characters": [
+    {
+      "codepoint": "U+0410",
+      "character": "А",
+      "glyph": "uni0410",
+      "advance": 500,
+      "construction": "Unchanged upstream A outline and advance."
+    },
+    {
+      "codepoint": "U+0412",
+      "character": "В",
+      "glyph": "uni0412",
+      "advance": 460,
+      "construction": "Unchanged upstream B outline and advance."
+    },
+    {
+      "codepoint": "U+0415",
+      "character": "Е",
+      "glyph": "uni0415",
+      "advance": 460,
+      "construction": "Unchanged upstream E outline and advance."
+    },
+    {
+      "codepoint": "U+041A",
+      "character": "К",
+      "glyph": "uni041A",
+      "advance": 530,
+      "construction": "Unchanged upstream K outline and advance."
+    },
+    {
+      "codepoint": "U+041C",
+      "character": "М",
+      "glyph": "uni041C",
+      "advance": 570,
+      "construction": "Unchanged upstream M outline and advance."
+    },
+    {
+      "codepoint": "U+041D",
+      "character": "Н",
+      "glyph": "uni041D",
+      "advance": 450,
+      "construction": "Unchanged upstream H outline and advance."
+    },
+    {
+      "codepoint": "U+041E",
+      "character": "О",
+      "glyph": "uni041E",
+      "advance": 410,
+      "construction": "Unchanged upstream O outline and advance."
+    },
+    {
+      "codepoint": "U+0420",
+      "character": "Р",
+      "glyph": "uni0420",
+      "advance": 450,
+      "construction": "Unchanged upstream P outline and advance."
+    },
+    {
+      "codepoint": "U+0421",
+      "character": "С",
+      "glyph": "uni0421",
+      "advance": 412,
+      "construction": "Unchanged upstream C outline and advance."
+    },
+    {
+      "codepoint": "U+0422",
+      "character": "Т",
+      "glyph": "uni0422",
+      "advance": 490,
+      "construction": "Unchanged upstream T outline and advance."
+    },
+    {
+      "codepoint": "U+0425",
+      "character": "Х",
+      "glyph": "uni0425",
+      "advance": 500,
+      "construction": "Unchanged upstream X outline and advance."
+    },
+    {
+      "codepoint": "U+0430",
+      "character": "а",
+      "glyph": "uni0430",
+      "advance": 360,
+      "construction": "Unchanged upstream a outline and advance."
+    },
+    {
+      "codepoint": "U+0435",
+      "character": "е",
+      "glyph": "uni0435",
+      "advance": 330,
+      "construction": "Unchanged upstream e outline and advance."
+    },
+    {
+      "codepoint": "U+043E",
+      "character": "о",
+      "glyph": "uni043E",
+      "advance": 290,
+      "construction": "Unchanged upstream o outline and advance."
+    },
+    {
+      "codepoint": "U+0440",
+      "character": "р",
+      "glyph": "uni0440",
+      "advance": 350,
+      "construction": "Unchanged upstream p outline and advance."
+    },
+    {
+      "codepoint": "U+0441",
+      "character": "с",
+      "glyph": "uni0441",
+      "advance": 308,
+      "construction": "Unchanged upstream c outline and advance."
+    },
+    {
+      "codepoint": "U+0445",
+      "character": "х",
+      "glyph": "uni0445",
+      "advance": 380,
+      "construction": "Unchanged upstream x outline and advance."
+    },
+    {
+      "codepoint": "U+0443",
+      "character": "у",
+      "glyph": "uni0443",
+      "advance": 330,
+      "construction": "Unchanged upstream y outline and advance."
+    },
+    {
+      "codepoint": "U+0411",
+      "character": "Б",
+      "glyph": "uni0411",
+      "advance": 455,
+      "construction": "Open flag and generous lower bowl; native I stem."
+    },
+    {
+      "codepoint": "U+0413",
+      "character": "Г",
+      "glyph": "uni0413",
+      "advance": 400,
+      "construction": "Open right angle; long tapered flag."
+    },
+    {
+      "codepoint": "U+0414",
+      "character": "Д",
+      "glyph": "uni0414",
+      "advance": 495,
+      "construction": "Triangular handwritten de with two visible feet below the baseline."
+    },
+    {
+      "codepoint": "U+0416",
+      "character": "Ж",
+      "glyph": "uni0416",
+      "advance": 620,
+      "construction": "Six-branched zhe with open joins and differentiated diagonals."
+    },
+    {
+      "codepoint": "U+0417",
+      "character": "З",
+      "glyph": "uni0417",
+      "advance": 420,
+      "construction": "Two open bowls; deliberately not a substituted digit 3."
+    },
+    {
+      "codepoint": "U+0418",
+      "character": "И",
+      "glyph": "uni0418",
+      "advance": 470,
+      "construction": "Ascending diagonal, distinct from Latin N."
+    },
+    {
+      "codepoint": "U+041B",
+      "character": "Л",
+      "glyph": "uni041B",
+      "advance": 440,
+      "construction": "Pointed el with a light entry and a heavy descending right leg."
+    },
+    {
+      "codepoint": "U+041F",
+      "character": "П",
+      "glyph": "uni041F",
+      "advance": 470,
+      "construction": "Flat open counter and independently tapered stems."
+    },
+    {
+      "codepoint": "U+0423",
+      "character": "У",
+      "glyph": "uni0423",
+      "advance": 455,
+      "construction": "Diagonal descending tail; explicitly distinct from straight Ү."
+    },
+    {
+      "codepoint": "U+04AE",
+      "character": "Ү",
+      "glyph": "uni04AE",
+      "advance": 480,
+      "construction": "Native Y skeleton supplies the required straight stem."
+    },
+    {
+      "codepoint": "U+04AF",
+      "character": "ү",
+      "glyph": "uni04AF",
+      "advance": 340,
+      "construction": "Straight descender and fork, never the hooked Latin y / Cyrillic у."
+    },
+    {
+      "codepoint": "U+0424",
+      "character": "Ф",
+      "glyph": "uni0424",
+      "advance": 560,
+      "construction": "Oval bowl crossed by an extended native stem."
+    },
+    {
+      "codepoint": "U+0426",
+      "character": "Ц",
+      "glyph": "uni0426",
+      "advance": 465,
+      "construction": "Open-topped tse, with a distinct right descender."
+    },
+    {
+      "codepoint": "U+0427",
+      "character": "Ч",
+      "glyph": "uni0427",
+      "advance": 454,
+      "construction": "Open upper bowl with a high joining stroke."
+    },
+    {
+      "codepoint": "U+0428",
+      "character": "Ш",
+      "glyph": "uni0428",
+      "advance": 620,
+      "construction": "Three independently spaced native brush stems; flat baseline."
+    },
+    {
+      "codepoint": "U+0429",
+      "character": "Щ",
+      "glyph": "uni0429",
+      "advance": 641,
+      "construction": "Sha construction with an unmistakable right descender."
+    },
+    {
+      "codepoint": "U+042C",
+      "character": "Ь",
+      "glyph": "uni042C",
+      "advance": 406,
+      "construction": "Lower bowl at mid-height, not the tall Latin b."
+    },
+    {
+      "codepoint": "U+042A",
+      "character": "Ъ",
+      "glyph": "uni042A",
+      "advance": 485,
+      "construction": "Soft-sign bowl with a projecting upper-left shoulder."
+    },
+    {
+      "codepoint": "U+042B",
+      "character": "Ы",
+      "glyph": "uni042B",
+      "advance": 603,
+      "construction": "Soft-sign bowl and detached right stem, with open spacing."
+    },
+    {
+      "codepoint": "U+042D",
+      "character": "Э",
+      "glyph": "uni042D",
+      "advance": 425,
+      "construction": "Reversed native C with a tapered middle tongue."
+    },
+    {
+      "codepoint": "U+042E",
+      "character": "Ю",
+      "glyph": "uni042E",
+      "advance": 619,
+      "construction": "Native O and I joined at optical middle height."
+    },
+    {
+      "codepoint": "U+042F",
+      "character": "Я",
+      "glyph": "uni042F",
+      "advance": 475,
+      "construction": "Mirrored native R skeleton, the corresponding Cyrillic ya form."
+    },
+    {
+      "codepoint": "U+04E8",
+      "character": "Ө",
+      "glyph": "uni04E8",
+      "advance": 410,
+      "construction": "Native round outline plus a horizontal crossbar; no slash."
+    },
+    {
+      "codepoint": "U+04E9",
+      "character": "ө",
+      "glyph": "uni04E9",
+      "advance": 290,
+      "construction": "Native round outline plus a horizontal crossbar; no slash."
+    },
+    {
+      "codepoint": "U+0432",
+      "character": "в",
+      "glyph": "uni0432",
+      "advance": 346,
+      "construction": "Optically scaled upright В; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0433",
+      "character": "г",
+      "glyph": "uni0433",
+      "advance": 303,
+      "construction": "Optically scaled upright Г; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0434",
+      "character": "д",
+      "glyph": "uni0434",
+      "advance": 371,
+      "construction": "Optically scaled upright Д; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0436",
+      "character": "ж",
+      "glyph": "uni0436",
+      "advance": 477,
+      "construction": "Optically scaled upright Ж; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0437",
+      "character": "з",
+      "glyph": "uni0437",
+      "advance": 319,
+      "construction": "Optically scaled upright З; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0438",
+      "character": "и",
+      "glyph": "uni0438",
+      "advance": 357,
+      "construction": "Optically scaled upright И; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+043A",
+      "character": "к",
+      "glyph": "uni043A",
+      "advance": 382,
+      "construction": "Optically scaled upright К; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+043B",
+      "character": "л",
+      "glyph": "uni043B",
+      "advance": 334,
+      "construction": "Optically scaled upright Л; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+043C",
+      "character": "м",
+      "glyph": "uni043C",
+      "advance": 462,
+      "construction": "Optically scaled upright М; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+043D",
+      "character": "н",
+      "glyph": "uni043D",
+      "advance": 338,
+      "construction": "Optically scaled upright Н; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+043F",
+      "character": "п",
+      "glyph": "uni043F",
+      "advance": 357,
+      "construction": "Optically scaled upright П; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0442",
+      "character": "т",
+      "glyph": "uni0442",
+      "advance": 372,
+      "construction": "Optically scaled upright Т; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0446",
+      "character": "ц",
+      "glyph": "uni0446",
+      "advance": 353,
+      "construction": "Optically scaled upright Ц; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0447",
+      "character": "ч",
+      "glyph": "uni0447",
+      "advance": 345,
+      "construction": "Optically scaled upright Ч; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0448",
+      "character": "ш",
+      "glyph": "uni0448",
+      "advance": 496,
+      "construction": "Optically scaled upright Ш; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0449",
+      "character": "щ",
+      "glyph": "uni0449",
+      "advance": 513,
+      "construction": "Optically scaled upright Щ; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+044A",
+      "character": "ъ",
+      "glyph": "uni044A",
+      "advance": 373,
+      "construction": "Optically scaled upright Ъ; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+044B",
+      "character": "ы",
+      "glyph": "uni044B",
+      "advance": 464,
+      "construction": "Optically scaled upright Ы; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+044C",
+      "character": "ь",
+      "glyph": "uni044C",
+      "advance": 317,
+      "construction": "Optically scaled upright Ь; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+044D",
+      "character": "э",
+      "glyph": "uni044D",
+      "advance": 323,
+      "construction": "Optically scaled upright Э; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+044E",
+      "character": "ю",
+      "glyph": "uni044E",
+      "advance": 470,
+      "construction": "Optically scaled upright Ю; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+044F",
+      "character": "я",
+      "glyph": "uni044F",
+      "advance": 361,
+      "construction": "Optically scaled upright Я; preserves recognizable Cyrillic skeleton."
+    },
+    {
+      "codepoint": "U+0431",
+      "character": "б",
+      "glyph": "uni0431",
+      "advance": 343,
+      "construction": "Round lowercase bowl with a rising flag, distinct from ь and Latin b."
+    },
+    {
+      "codepoint": "U+0444",
+      "character": "ф",
+      "glyph": "uni0444",
+      "advance": 453,
+      "construction": "Lowercase bowl at x-height with ascender and descender."
+    },
+    {
+      "codepoint": "U+0306",
+      "character": "̆",
+      "glyph": "uni0306",
+      "advance": 0,
+      "construction": "Zero-width combining breve, centered at its attachment anchor."
+    },
+    {
+      "codepoint": "U+0308",
+      "character": "̈",
+      "glyph": "uni0308",
+      "advance": 0,
+      "construction": "Zero-width combining diaeresis; two distinct brush touches."
+    },
+    {
+      "codepoint": "U+0401",
+      "character": "Ё",
+      "glyph": "uni0401",
+      "advance": 460,
+      "construction": "Е plus matching brush diacritic, with clear separation."
+    },
+    {
+      "codepoint": "U+0451",
+      "character": "ё",
+      "glyph": "uni0451",
+      "advance": 330,
+      "construction": "е plus matching brush diacritic, with clear separation."
+    },
+    {
+      "codepoint": "U+0419",
+      "character": "Й",
+      "glyph": "uni0419",
+      "advance": 470,
+      "construction": "И plus matching brush diacritic, with clear separation."
+    },
+    {
+      "codepoint": "U+0439",
+      "character": "й",
+      "glyph": "uni0439",
+      "advance": 357,
+      "construction": "и plus matching brush diacritic, with clear separation."
+    },
+    {
+      "codepoint": "U+20AE",
+      "character": "₮",
+      "glyph": "uni20AE",
+      "advance": 490,
+      "construction": "Tugrik sign with two separate bars across the native T stem."
+    },
+    {
+      "codepoint": "U+00A0",
+      "character": " ",
+      "glyph": "uni00A0",
+      "advance": 280,
+      "construction": "Nonbreaking space, same advance as upstream space."
+    }
+  ],
+  "alphabet_upper": "АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ",
+  "alphabet_lower": "абвгдеёжзийклмноөпрстуүфхцчшщъыьэюя",
+  "files": {
+    "TalynBrush-Regular.ttf": "30954920efc5f6f84ddbe2326ef62a2ef7131096ce8069924224cdd123868324",
+    "TalynBrush-Regular.woff2": "4562ad3d771bd910008831147e5d096bc621430408d47f4c60aa7e870e240197"
+  }
+}
