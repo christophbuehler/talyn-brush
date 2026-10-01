@@ -92,4 +92,4 @@ jobs:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
           test -f "build/TalynBrush-${RELEASE_TAG}.zip"
-          gh release create "$RELEASE_TAG" "build/TalynBrush-${RELEASE_TAG}.zip" build/SHA256SUMS.txt --verify-tag --prerelease --title "Talyn Brush 0.100 — Mongolian Cyrillic preview" --notes-file docs/RELEASE.md
+          gh release create "$RELEASE_TAG" "build/TalynBrush-${RELEASE_TAG}.zip" build/SHA256SUMS.txt --verify-tag --prerelease --title "Talyn Brush 0.200 — Mongolian Cyrillic preview" --notes-file docs/RELEASE.md

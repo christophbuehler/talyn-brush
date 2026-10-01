@@ -1,44 +1,49 @@
 # Letter design and review
 
-The original font has no mapped Cyrillic letters. This extension draws a complete modern Mongolian Cyrillic alphabet, with no outlines imported from a second font. Construction was AI-assisted and reviewed in rendered proofs. It has not been independently reviewed by a native Mongolian type designer.
+Talyn Brush adds modern Mongolian Cyrillic to Nanum Brush Script. The source has no mapped Cyrillic letters. Outline construction is AI-assisted and inspected in rendered proofs; independent review by a native Mongolian type designer is still outstanding.
+
+## Revision 0.200: a change of handwriting
+
+The first preview relied too heavily on reduced capitals and smooth, constructed pressure ribbons. In words, the lowercase looked stiff beside the source's loose Latin brushwork. This revision changes the lowercase structure and rebuilds the added strokes from the actual original contours.
+
+The handwritten forms of **и, п, т, д** use the source **u, n, m, g** movements at their original stroke weight. These are deliberate cursive Cyrillic skeletons. Lowercase **к** keeps the native branches but lowers the ascending stroke to Cyrillic x-height. **л** retains unequal curved legs; **м** has a deep central join; **ш** uses two rounded troughs with a shared middle stroke. **б** has a rising flag, while **в** has two loops and an ascender. A shortened **ь** keeps its bowl's original weight instead of compressing the whole letter.
+
+Other letters need more than a Latin lookalike. The two bowls of **ф** meet on one ascending and descending stem. **ж** uses the native K's curved branches, with clear space around the central stroke. **я** combines a full-weight upper bowl with a falling left leg. **Өө** use the original O/o bowls and a thin horizontal brush dash, preserving two open counters. **Үү** have straight stems and stay distinct from **Уу** and their hooked tails.
+
+All outline material comes from the archived Nanum font. Editable recipes crop, reshape, reflect, and combine actual source contours; no other typeface supplies glyphs or outline fragments. Each component is geometrically unioned before TrueType conversion. This matters when reflecting outlines: merely concatenating opposite-winding contours can punch holes through a join. Regression checks verify connected bodies and the intended number of counters in the affected forms.
 
 ## Relationship to the original
 
-The original is informal brush lettering: variable cap heights, triangular terminals, broad curves, irregular proportions, and little mechanical repetition. The extension works in the same 1000-unit em. Shared skeletons such as А/A, В/B, Е/E, Н/H, О/O, Р/P, С/C, and Х/X use original outlines. New stems adapt the source I; new branches and bowls use editable pressure knots that form smooth tapered outlines. Overlapping strokes are unioned before conversion to quadratic TrueType curves.
+The source varies its letter heights, pressure, terminals, proportions, and baseline. The revision follows those variations instead of imposing one uniform stroke or geometric grid. It remains in the original 1000-unit em. Shared skeletons such as А/A, В/B, Е/E, Н/H, О/O, Р/P, С/C, and Х/X use the original brush outlines.
 
-The lowercase mixes recognizable upright handwritten forms with the source's rounded Latin-compatible forms. Lowercase б has a rising flag; д has a triangular body and two feet; л has a pointed body; т uses the upright T-like skeleton. These are intentional forms, not accidental Latin fallback. New drawings follow the loose baseline and changing proportions rather than imposing a geometric grid on the source.
+All inherited glyphs, including their horizontal metrics, hinting, Unicode mappings and GSUB substitutions, remain byte-for-byte unchanged. Cyrillic advances are tuned to the individual forms. New letters are unhinted; this remains a display font for headings, invitations, and short text.
 
-## Distinctions that must survive revisions
+## Distinctions checked in proofs
 
-| Pair | Construction requirement |
+| Pair | Design requirement |
 | --- | --- |
-| Оо / Өө | Өө retains the original round bowl and gains a horizontal bar, with both counters open. It must never look like Øø. |
-| Уу / Үү | Уу has a descending tail; Үү has a straight stem. The uppercase Ү reuses the appropriate Y skeleton. Lowercase ү is separately drawn, not mapped to Latin y. |
-| Ии / Йй | Same body; the breve sits above it with clear separation. |
-| Ее / Ёё | Same body; two separate brush touches form the diaeresis. |
-| Бб / Ьь | Б has an upper flag; б has a rising flag and round bowl. Ьь has only a lower bowl. |
-| Шш / Щщ | Щщ adds a visible right descender. |
-| Пп / Гг | Both stems of Пп reach its head stroke; Гг stays open on the right. |
-| Дд / Лл | Дд has a base and two feet; Лл has neither. |
+| Оо / Өө | A horizontal crossbar, two open counters; no slash. |
+| Уу / Үү | Hooked descending movement versus a straight stem. |
+| Ии / Йй | Same body with a clearly separated breve. |
+| Ее / Ёё | Same body with two separate brush dots. |
+| Бб / Ьь | A projecting upper flag versus a plain ascending stroke. |
+| Шш / Щщ | A visible right descender on Щщ. |
+| Пп / Гг | A second full stroke on Пп; an open right side on Гг. |
+| Дд / Лл | Capital Д has a base and feet; lowercase д descends below the baseline. |
 
-## Spacing and shaping
+Breve and diaeresis are zero-advance combining marks with GPOS anchors. Their outlines come from the native U bowl and i dots. Precomposed and decomposed Ё/Й strings are checked for identical HarfBuzz shaping. A small set of Cyrillic capital pairs is kerned.
 
-Inherited outlines and horizontal metrics are unchanged. New advances follow the original's proportional design. A small set of Cyrillic pairs is kerned, and breve/diaeresis are zero-advance marks with GPOS anchors. Precomposed and decomposed Ё/Й strings are checked for identical HarfBuzz shaping. The original GSUB full-width substitutions are preserved byte-for-byte.
+## Proofs and limits
 
-New letters use unhinted outlines, while inherited hinting remains intact. The intended use is display lettering, headings, and short text. There are no Cyrillic cursive stylistic alternates or a claim of full support for every language that uses Cyrillic.
+CI renders the complete built cmap, all 35 letters in both cases, and a [word proof](../specimen/words.png) with unchanged Latin alongside Cyrillic and samples at 24, 48, and 96 pixels. FreeType renders the actual font; HarfBuzz shapes the phrases. No system fallback is allowed in the image generator. The revision was also compared with the first preview using the same invitation phrases at the same size.
 
-## Proofs and review status
+Coverage, contour, shaping, sanitization and reproducibility checks establish technical integrity. They do not establish cultural or typographic authority. The font remains a preview pending native-speaker and type-designer review. Traditional vertical Mongolian, all Cyrillic Extended languages, and alternative stylistic sets are outside this release's scope.
 
-The full atlas is generated from the built font's cmap rather than a manually curated sample. FreeType loads each character directly; HarfBuzz shapes the phrase proofs. Tests compare the critical pairs at 24, 48, and 96 pixels and verify that every added alphabetic character produces ink.
+Use the [live type tester](https://christophbuehler.github.io/talyn-brush/) to review actual words. Useful feedback includes the text, character/codepoint, size, application, and a screenshot.
 
-Visual review inspected the full alphabet, large pairs, Mongolian words, the original Latin alphabet beside the extension, and atlas sheets. An early pass had stems that were too light and a weak join in П; those were corrected before release. Tests establish coverage and rendering integrity. They do not establish cultural or typographic authority.
+## References
 
-For review, use the [live type tester](https://christophbuehler.github.io/talyn-brush/) and [Cyrillic proof](../specimen/cyrillic.png). Report the actual word, character/codepoint, size, application, and a screenshot if possible. Native-speaker feedback should precede a stable 1.0 release.
-
-## Sources
-
-- [Original Google Fonts specimen](https://fonts.google.com/specimen/Nanum+Brush+Script) and [upstream project metadata](https://github.com/google/fonts/tree/main/ofl/nanumbrushscript).
+- [Original Google Fonts specimen](https://fonts.google.com/specimen/Nanum+Brush+Script) and [upstream metadata](https://github.com/google/fonts/tree/main/ofl/nanumbrushscript).
+- [Google Design: Scripting Cyrillic](https://design.google/library/scripting-cyrillic): handwritten Cyrillic development, the relationship to Latin brushwork, and the value of specialist review. Caveat and Bad Script were studied as visual references for Cyrillic skeletons; their outlines are not included.
 - [Unicode CLDR 48 Mongolian exemplars](https://github.com/unicode-org/cldr/blob/release-48/common/main/mn.xml): modern Mongolian alphabet coverage. Auxiliary exemplars are not claimed.
 - [Unicode Cyrillic chart](https://www.unicode.org/charts/PDF/U0400.pdf): U+04AE/U+04AF are straight U; U+04E8/U+04E9 are barred O.
-
-The original TTF and the pressure-knot recipes, not any chart font, are the outline sources.

@@ -27,9 +27,9 @@ def test_atlas_covers_exactly_the_built_cmap():
         with Image.open(ROOT/'specimen/pages'/page['file']) as image:image.verify()
 
 def test_release_package_includes_license_and_exact_font():
-    with zipfile.ZipFile(ROOT/'build/TalynBrush-v0.1.0.zip') as archive:
-        prefix='TalynBrush-v0.1.0/'
-        for path in ['OFL.txt','FONTLOG.txt','docs/OFL-FAQ.txt','fonts/TalynBrush-Regular.ttf','fonts/TalynBrush-Regular.woff2']:
+    with zipfile.ZipFile(ROOT/'build/TalynBrush-v0.2.0.zip') as archive:
+        prefix='TalynBrush-v0.2.0/'
+        for path in ['OFL.txt','FONTLOG.txt','docs/OFL-FAQ.txt','fonts/TalynBrush-Regular.ttf','fonts/TalynBrush-Regular.woff2','specimen/words.png']:
             assert archive.read(prefix+path)==(ROOT/path).read_bytes()
         assert not any('NanumBrushScript-Regular.ttf' in p for p in archive.namelist())
 
@@ -44,3 +44,9 @@ def test_site_has_no_missing_local_links():
                     if not p.scheme and p.path:
                         assert (ROOT/'site'/p.path).exists(), value
     Links().feed((ROOT/'site/index.html').read_text())
+
+
+def test_word_proof_is_complete_and_decodable():
+    with Image.open(ROOT/'specimen/words.png') as image:
+        assert image.size==(1800,1600)
+        image.verify()

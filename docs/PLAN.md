@@ -23,3 +23,10 @@ Layout: a spacious, left-aligned brush specimen, an immediately editable Mongoli
     Full character atlas / license / design notes
 
 Review: the bold element is the type itself. The page is a practical font proof and download surface; it does not need illustrative imagery, gradients, or dashboard chrome.
+
+## Revision 0.200
+
+1. Compare the invitation phrases against the first preview at equal sizes.
+2. Replace miniature-cap lowercase with handwritten Cyrillic skeletons. Reuse the source's real brush contours; inspect joins, counters and pressure at large sizes.
+3. Proof complete words, all 35 letter pairs, critical distinctions and small sizes. Add regression checks for the reflected-contour join failure.
+4. Rebuild the full atlas and licensed package, run all release checks, and verify the deployed commit and versioned download after CI.

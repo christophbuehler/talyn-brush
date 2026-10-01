@@ -3,6 +3,20 @@ FONTLOG for Talyn Brush
 Talyn Brush is an independent modified version of Nanum Brush Script.
 It is distributed under the SIL Open Font License 1.1. See OFL.txt.
 
+2026-10-01 — Talyn Brush 0.200 (release tag v0.2.0; preview)
+- Reworked the Cyrillic design after feedback on rigid miniature capitals.
+- Introduced handwritten lowercase forms for и, п, т, д and ш, and reshaped
+  the other constructed letters using actual original brush contours.
+- Removed synthetic pressure ribbons; retained original stroke texture,
+  irregular terminals, and full-weight bowls when shortening ascenders.
+- Refined Өө / Үү, Фф, Жж, marks, crossbars and curved descenders.
+- Unioned components before final outline conversion to prevent reversed
+  contour winding from cutting gaps into overlapping brush strokes.
+- Added counter/connected-contour regression tests and CI word-size proofs.
+- Compared identical phrases against the first preview and original Latin.
+- Retained all inherited glyphs and licensing metadata without changes.
+- Remains a preview awaiting independent native Mongolian/type-design review.
+
 2026-10-01 — Talyn Brush 0.100 (release tag v0.1.0; preview)
 - Preserved the exact user-supplied original TTF and OFL in upstream/.
 - Preserved all 11,789 original Unicode mappings and every original glyph

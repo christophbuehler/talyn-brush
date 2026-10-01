@@ -1,16 +1,18 @@
-"""Editable outline recipes for Talyn Brush. Coordinates are font units, y up.
+"""Talyn Brush outline recipes. Coordinates are font units, y up.
 
-Native components refer only to the archived Nanum Brush Script. Brush paths
-are hand-positioned pressure knots, not outlines from another Cyrillic font.
+All outline material comes from the archived Nanum Brush Script. The recipes
+adapt actual brush contours, not strokes or outlines from a second typeface.
 SPDX-License-Identifier: OFL-1.1
 """
 from dataclasses import dataclass, field
-from math import hypot
+import pathops
+from fontTools.pens.recordingPen import RecordingPen
 from fontTools.pens.transformPen import TransformPen
 
 UPPER = 'АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ'
 LOWER = UPPER.lower()
 IDENTITY = (1, 0, 0, 1, 0, 0)
+
 
 @dataclass
 class Drawing:
@@ -22,8 +24,13 @@ class Drawing:
         self.parts.append(('native', char, transform))
         return self
 
-    def brush(self, *knots):
-        self.parts.append(('brush', knots, IDENTITY))
+    def fragment(self, char, *, crop=None, fit=None, warp=None, transform=IDENTITY):
+        """Crop a real brush stroke; optionally reshape or fit its bounding box.
+
+        Crops are made before point edits and affine transforms. They allow
+        joins inside overlapping strokes without manufacturing new terminals.
+        """
+        self.parts.append(('fragment', (char, crop, fit, warp), transform))
         return self
 
     def child(self, drawing, transform=IDENTITY):
@@ -31,188 +38,187 @@ class Drawing:
         return self
 
     def draw(self, pen, glyphset, cmap):
+        result = pathops.Path()
         for kind, value, transform in self.parts:
-            out = TransformPen(pen, transform)
+            part = pathops.Path()
+            out = TransformPen(part.getPen(), transform)
             if kind == 'native':
                 glyphset[cmap[ord(value)]].draw(out)
             elif kind == 'child':
                 value.draw(out, glyphset, cmap)
             else:
-                ribbon(out, value)
+                char, crop, fit, warp = value
+                shape = pathops.Path()
+                glyphset[cmap[ord(char)]].draw(shape.getPen())
+                if crop:
+                    x0, y0, x1, y1 = crop
+                    box = pathops.Path(); p = box.getPen()
+                    p.moveTo((x0, y0)); p.lineTo((x1, y0))
+                    p.lineTo((x1, y1)); p.lineTo((x0, y1)); p.closePath()
+                    shape = pathops.op(shape, box, pathops.PathOp.INTERSECTION)
+                if warp:
+                    recording = RecordingPen(); shape.draw(recording)
+                    shape = pathops.Path(); p = shape.getPen()
+                    for operation, points in recording.value:
+                        getattr(p, operation)(*(warp(x, y) for x, y in points))
+                if fit:
+                    x0, y0, x1, y1 = shape.bounds
+                    left, bottom, right, top = fit
+                    sx, sy = (right-left)/(x1-x0), (top-bottom)/(y1-y0)
+                    out = TransformPen(out, (sx, 0, 0, sy, left-sx*x0, bottom-sy*y0))
+                shape.draw(out)
+            # Reflections reverse contour winding. A true union per component
+            # prevents opposite-winding strokes from punching holes in joins.
+            result = pathops.op(result, part, pathops.PathOp.UNION)
+        result.draw(pen)
 
 
-def ribbon(pen, knots):
-    """A smooth, asymmetric pressure ribbon through explicitly designed knots."""
-    sides = [[], []]
-    for i, (x, y, width) in enumerate(knots):
-        before, after = knots[max(0, i-1)], knots[min(len(knots)-1, i+1)]
-        dx, dy = after[0] - before[0], after[1] - before[1]
-        length = hypot(dx, dy)
-        nx, ny = -dy / length, dx / length
-        sides[0].append((x + nx*width*.53*1.28, y + ny*width*.53*1.28))
-        sides[1].append((x - nx*width*.47*1.28, y - ny*width*.47*1.28))
-    points = sides[0] + sides[1][::-1]
-    # A closed Catmull-Rom spline gives editable knots with continuous edges.
-    pen.moveTo(points[0])
-    for i in range(len(points)):
-        p0, p1, p2, p3 = [points[j % len(points)] for j in (i-1, i, i+1, i+2)]
-        pen.curveTo((p1[0]+(p2[0]-p0[0])/6, p1[1]+(p2[1]-p0[1])/6),
-                    (p2[0]-(p3[0]-p1[0])/6, p2[1]-(p3[1]-p1[1])/6), p2)
-    pen.closePath()
+def dash(d, box):
+    return d.fragment('-', fit=box)
 
 
-def stem(d, x, top=445, bottom=-10, width=49, lean=18):
-    # Preserve the actual upstream brush edge and taper. I spans x89..177,
-    # y-28..490; skew follows the pen's modest rightward fall.
-    sy = (top-bottom)/518
-    sx = width/65
-    shear = -lean/518
-    return d.native('I', (sx, 0, shear, sy, x-sx*133-shear*490, bottom+28*sy))
+def tail(d, x, y=10, height=150):
+    # A comma's curved falling stroke gives the tail a proper brush finish.
+    return d.fragment(',', fit=(x, y-height, x+49, y+24))
 
 
-def bar(d, left, right, y, width=40, rise=12):
-    return d.brush((left, y-5, 5), (left+25, y+2, width*.85),
-                   ((left+right)/2, y+rise, width), (right, y+rise+4, 3))
+def short_b(x, y):
+    # Preserve the bowl's weight; shorten only the ascending stem.
+    return x, y if y <= 235 else 235 + (y-235)*.31
 
 
 def recipes():
     g = {}
     def put(c, d, note):
-        d.note = note
-        g[c] = d
+        d.note = note; g[c] = d
         return d
-    # Shared Latin/Cyrillic skeletons retain the exact upstream outlines.
+
     for c, latin in zip('АВЕКМНОРСТХ', 'ABEKMHOPCTX'):
-        put(c, Drawing(0).native(latin), f'Unchanged upstream {latin} outline and advance.')
+        put(c, Drawing(0).native(latin), f'Original {latin} brush outline and advance.')
     for c, latin in zip('аеорсху', 'aeopcxy'):
-        put(c, Drawing(0).native(latin), f'Unchanged upstream {latin} outline and advance.')
+        put(c, Drawing(0).native(latin), f'Original {latin} brush outline and advance.')
 
-    d = stem(Drawing(455), 97, 444, -10, 55)
-    bar(d, 62, 404, 435, 42)
-    d.brush((102,258,10),(260,262,40),(370,221,44),(367,132,38),(287,44,45),(117,-4,11))
-    put('Б',d,'Open flag and generous lower bowl; native I stem.')
-    put('Г',bar(stem(Drawing(400),85,435,-15,53),58,370,439,45),'Open right angle; long tapered flag.')
-    d=Drawing(495)
-    d.brush((77,28,6),(133,155,38),(189,306,42),(221,448,20))
-    d.brush((221,448,12),(273,425,45),(324,202,57),(378,17,7))
-    bar(d,31,445,10,46,17)
-    d.brush((48,32,20),(45,-30,43),(30,-111,3))
-    d.brush((423,35,26),(443,-24,44),(433,-102,3))
-    put('Д',d,'Triangular handwritten de with two visible feet below the baseline.')
+    # Capitals keep the source's uneven cap line and individual pen movement.
+    d = Drawing(427).native('b',(1.19,0,0,.94,0,-3))
+    dash(d,(62,410,378,463))
+    put('Б', d, 'Round native b lower bowl, rising stem, and a full-width brush flag.')
+    d = Drawing(387).fragment('I',fit=(64,-23,134,446))
+    dash(d,(48,410,355,463))
+    put('Г', d, 'Native tapered stem and original brush dash, joined at the upper left.')
+    put('И', Drawing(480).fragment('N', fit=(35,-20,440,460), transform=(-1,0,0,1,475,0)),
+        'Reversed native N: rising diagonal with the original brush modulation.')
+    put('Л', Drawing(410).native('V',(1,0,0,-.97,5,407)),
+        'Native V turned into an open el, retaining the irregular flowing legs.')
+    d = Drawing(467).child(g['Л'], (1,0,0,1,20,0))
+    dash(d,(24,-13,428,32));tail(d,27,18,112);tail(d,401,20,110)
+    put('Д', d, 'Open el body with a low brushed base and two falling feet.')
+    d = Drawing(625)
+    d.fragment('K',crop=(163,-150,580,550),fit=(300,-38,592,445))
+    d.fragment('K',crop=(163,-150,580,550),fit=(300,-38,592,445),transform=(-1,0,0,1,610,0))
+    d.fragment('I',fit=(278,-28,339,469))
+    put('Ж',d,'Two original K branches with a full-weight central stem; open six-arm structure.')
+    put('З',Drawing(372).native('3',(1,0,0,.94,0,0)),
+        'Open double bowl adapted from the source 3, with its angular pressure changes intact.')
+    d=Drawing(476).fragment('I',fit=(49,-15,123,459))
+    d.fragment('I',fit=(363,-20,428,476))
+    dash(d,(51,425,429,477))
+    put('П',d,'Two full native brush stems joined by a free upper flag.')
+    put('У',Drawing(420).native('y',(1.22,0,0,1.24,0,52)),
+        'Native y movement lifted to cap height, retaining its hooked descender.')
+    put('Ү',Drawing(480).native('Y'),'Original Y skeleton with the required straight stem.')
+    d=Drawing(490).native('d',(1.04,0,0,.96,0,9))
+    d.native('p',(1.04,0,0,.96,130,-21))
+    put('Ф',d,'Asymmetric original d and p bowls joined on one long central stem.')
+    d=Drawing(457).native('u',(1.20,0,0,1.44,0,16));tail(d,353,6,140)
+    put('Ц',d,'Open bowl and full-height right stem with a short curved descender.')
+    d=Drawing(451).fragment('u',warp=lambda x,y:(x*1.24,y*1.41+17 if x>237 else y*.80+207))
+    put('Ч',d,'High open bowl and long right stroke with original brush edges.')
+    d=Drawing(616)
+    for box in [(49,-10,112,448),(272,2,334,433),(509,-15,578,455)]:
+        d.fragment('I',fit=box)
+    dash(d,(64,-17,568,40))
+    put('Ш',d,'Three full-height brush stems joined by a low, freely drawn baseline.')
+    put('Щ',tail(Drawing(641).child(g['Ш']),548,17,147),
+        'Three-stem sha with a curved right descender.')
+    put('Ь',Drawing(405).native('b',(1.23,0,0,.90,0,-5)),
+        'Original b bowl and rising stroke, adjusted to cap proportions.')
+    put('Ъ',dash(Drawing(471).child(g['Ь'],(1,0,0,1,54,0)),(19,407,190,455)),
+        'Soft-sign bowl with a broad left-projecting shoulder.')
+    d=Drawing(567).child(g['Ь']).fragment('I',fit=(439,-17,515,434))
+    put('Ы',d,'Soft-sign body and a detached brush stem with breathing room.')
+    d=Drawing(425).native('C',(-1,0,0,1,425,0));dash(d,(116,171,348,212))
+    put('Э',d,'Original C reversed, with an organic middle tongue.')
+    d=Drawing(592).fragment('H',crop=(-100,-100,256,600),transform=(.9,0,0,1,0,0))
+    d.native('O',(1,0,0,1,184,25));dash(d,(133,201,258,240))
+    put('Ю',d,'Original H entry and O bowl, joined at their optical middle.')
+    put('Я',Drawing(532).native('R',(-.91,0,0,1,512,0)),
+        'Reversed native R, with a broad bowl and freely falling diagonal leg.')
 
-    d=stem(Drawing(620),293,440,-30,53,16)
-    for pts in [((48,430,8),(137,349,40),(285,202,24)),
-                ((536,439,7),(454,337,40),(305,204,24)),
-                ((283,224,14),(144,103,52),(33,-20,3)),
-                ((298,221,16),(430,105,57),(568,-31,3))]: d.brush(*pts)
-    put('Ж',d,'Six-branched zhe with open joins and differentiated diagonals.')
+    # Lowercase is genuinely handwritten: n / u / m structures for п / и / т.
+    # These are standard cursive Cyrillic skeletons, not font fallback.
+    for c,latin in [('п','n'),('и','u'),('т','m'),('д','g')]:
+        put(c,Drawing(0).native(latin),f'Handwritten {c} using the original {latin} brush skeleton at full stroke weight.')
+    put('к',Drawing(403).fragment('k',warp=lambda x,y:(x,y if y<=285 else 285+(y-285)*.23)),
+        'Original k branches and stem, with the ascender lowered to Cyrillic x-height.')
+    put('л',Drawing(318).native('v',(1.08,0,0,-.94,1,288)),
+        'Open handwritten el with curved, unequal legs adapted from native v.')
+    put('м',Drawing(438).native('w',(.81,0,0,-.83,8,280)),
+        'Flowing em with a deep central join and curved exterior strokes.')
+    put('н',Drawing(351).native('H',(.75,0,0,.66,0,-2)),
+        'Short en with the original H diagonal cross stroke and uneven stems.')
+    put('г',Drawing(284).child(g['Г'],(.72,0,-.07,.67,22,0)),
+        'Open handwritten ge with a flowing native flag and tapered downstroke.')
+    d=Drawing(351).fragment('b',warp=lambda x,y:(x+max(0,y-290)*.28,y*.93))
+    dash(d,(104,427,321,479))
+    put('б',d,'Full-weight round bowl with a rising, right-turning flag.')
+    d=Drawing(333).native('b').native('o',(.68,0,0,.64,48,284))
+    put('в',d,'Ascending handwritten ve, with a small upper loop and generous lower bowl.')
+    put('ж',Drawing(478).child(g['Ж'],(.76,0,0,.71,0,0)),
+        'Six clear arms adapted from the native K branches, balanced at lowercase height.')
+    put('з',Drawing(294).native('3',(.78,0,0,.69,0,0)),
+        'Two unequal, open bowls with the source digit’s lively brush modulation.')
+    put('ү',Drawing(344).fragment('Y',warp=lambda x,y:(x*.70, y-80 if y<=150 else (y-150)*.72+70)),
+        'Native Y fork at x-height, with a long straight falling stem distinct from у.')
+    d=Drawing(451).native('d',(.96,0,0,.90,0,0)).native('p',(.96,0,0,.90,120,-29))
+    put('ф',d,'Asymmetric d and p bowls meet on one stem, with both ascender and descender.')
+    put('ц',tail(Drawing(371).native('u'),287,7,131),
+        'Rounded cursive tse with a compact right descender.')
+    d=Drawing(336).fragment('u',crop=(-100,-100,241,500),transform=(1,0,0,.52,0,145))
+    d.fragment('u',crop=(237,-100,400,500))
+    put('ч',d,'High rounded bowl and long right stroke; retains native u brush weight.')
+    put('ш',Drawing(548).native('u').native('u',(1,0,0,1,217,2)),
+        'Two rounded troughs and three upright strokes sharing the native u rhythm.')
+    put('щ',tail(Drawing(569).child(g['ш']),506,7,133),
+        'Handwritten sha with a compact, clearly visible right descender.')
+    put('ь',Drawing(319).fragment('b',warp=short_b),
+        'Full-size original b bowl; only the ascender is lowered to x-height.')
+    put('ъ',dash(Drawing(370).child(g['ь'],(1,0,0,1,47,0)),(18,282,157,328)),
+        'Soft-sign bowl with an overhanging native brush shoulder.')
+    d=Drawing(476).child(g['ь']).fragment('i',crop=(-100,-100,300,260),fit=(356,-14,427,315))
+    put('ы',d,'Round soft-sign bowl and an undotted i stroke at full lowercase weight.')
+    d=Drawing(314).native('c',(-1,0,0,1,314,0));dash(d,(79,122,250,157))
+    put('э',d,'Native c reversed, with a tapered middle tongue and open apertures.')
+    d=Drawing(463).fragment('i',crop=(-100,-100,300,260),fit=(40,-15,109,315))
+    d.native('o',(1,0,0,1,153,0));dash(d,(83,124,219,162))
+    put('ю',d,'Undotted i entry joined to the original o at full lowercase weight.')
+    d=Drawing(357).fragment('p',warp=lambda x,y:(335-x, y if y>=30 else 30+(y-30)*.12))
+    d.fragment('k',crop=(193,-50,440,153),fit=(46,-26,221,138),transform=(-1,0,0,1,254,0))
+    put('я',d,'Full-weight upper bowl and right stem, with a falling left diagonal from native k.')
 
-    d=Drawing(420)
-    d.brush((60,375,5),(152,441,33),(295,438,37),(340,365,42),
-            (292,290,32),(184,229,22),(284,240,23),(363,160,49),
-            (313,59,39),(178,-3,48),(52,25,6))
-    put('З',d,'Two open bowls; deliberately not a substituted digit 3.')
-
-    d=stem(stem(Drawing(470),76,442,-2,49),384,445,-22,52)
-    d.brush((90,18,9),(153,108,44),(277,317,46),(374,442,5))
-    put('И',d,'Ascending diagonal, distinct from Latin N.')
-    d=Drawing(440)
-    d.brush((35,-12,4),(103,149,39),(161,322,42),(202,445,19))
-    d.brush((202,445,10),(242,397,36),(291,224,53),(371,-18,5))
-    put('Л',d,'Pointed el with a light entry and a heavy descending right leg.')
-    d=stem(stem(Drawing(470),85,448,-15,54),383,468,-25,52)
-    bar(d,49,421,444,44)
-    put('П',d,'Flat open counter and independently tapered stems.')
-
-    d=Drawing(455)
-    d.brush((35,444,7),(129,326,47),(231,208,38))
-    d.brush((408,456,6),(333,316,38),(235,139,49),(148,-17,45),(54,-66,5))
-    put('У',d,'Diagonal descending tail; explicitly distinct from straight Ү.')
-    put('Ү',Drawing(480).native('Y'),'Native Y skeleton supplies the required straight stem.')
-    # Lowercase straight u is not Latin y: the stem descends vertically.
-    d=Drawing(340)
-    d.brush((33,316,4),(94,234,35),(182,133,31))
-    d.brush((304,315,5),(255,228,31),(183,132,21))
-    d.brush((183,148,19),(185,16,39),(195,-148,4))
-    put('ү',d,'Straight descender and fork, never the hooked Latin y / Cyrillic у.')
-
-    d=Drawing(560).native('O',(1.37,0,0,.9,-1,62))
-    stem(d,270,516,-103,49,10)
-    put('Ф',d,'Oval bowl crossed by an extended native stem.')
-    d=stem(stem(Drawing(465),81,442,8,48),365,444,3,49)
-    bar(d,73,412,2,45,15)
-    d.brush((399,29,14),(418,-44,46),(404,-126,3))
-    put('Ц',d,'Open-topped tse, with a distinct right descender.')
-    d=Drawing(454)
-    d.brush((71,442,5),(69,322,47),(106,233,44),(216,232,35),(360,300,8))
-    stem(d,363,451,-31,56)
-    put('Ч',d,'Open upper bowl with a high joining stroke.')
-    d=Drawing(620)
-    for x,top,bottom,w in [(77,445,1,48),(286,434,17,49),(526,445,-5,52)]: stem(d,x,top,bottom,w)
-    bar(d,69,568,1,47,12)
-    put('Ш',d,'Three independently spaced native brush stems; flat baseline.')
-    d=Drawing(641).child(g['Ш'])
-    d.brush((559,28,20),(585,-40,46),(568,-125,3))
-    put('Щ',d,'Sha construction with an unmistakable right descender.')
-    d=stem(Drawing(406),84,444,-12,54)
-    d.brush((98,250,6),(248,256,33),(337,198,47),(309,92,45),(220,21,44),(110,-6,7))
-    put('Ь',d,'Lower bowl at mid-height, not the tall Latin b.')
-    d=Drawing(485).child(g['Ь'],(1,0,0,1,67,0))
-    bar(d,27,158,436,41,-4)
-    put('Ъ',d,'Soft-sign bowl with a projecting upper-left shoulder.')
-    d=Drawing(603).child(g['Ь'])
-    stem(d,511,436,-19,54)
-    put('Ы',d,'Soft-sign bowl and detached right stem, with open spacing.')
-    d=Drawing(425).native('C',(-1,0,0,1,435,0))
-    bar(d,86,364,194,37,10)
-    put('Э',d,'Reversed native C with a tapered middle tongue.')
-    d=Drawing(619).native('O',(1,0,0,1,206,0))
-    stem(d,78,443,-18,53)
-    bar(d,79,295,179,39,10)
-    put('Ю',d,'Native O and I joined at optical middle height.')
-    d=Drawing(475).native('R',(-1,0,0,1,475,0))
-    put('Я',d,'Mirrored native R skeleton, the corresponding Cyrillic ya form.')
-    for c,base in [('Ө','O'),('ө','o')]:
-        d=Drawing(0).native(base)
-        bar(d,61 if c=='Ө' else 49,344 if c=='Ө' else 250,154 if c=='Ө' else 126,33 if c=='Ө' else 27,8)
-        put(c,d,'Native round outline plus a horizontal crossbar; no slash.')
-
-    # Upright handwritten lowercase forms use cap skeletons, optical corrections,
-    # and x-height proportions. This avoids ambiguous Latin cursive substitutes.
-    lower_forms = {
-        'в':('В',.72,.68,15,0), 'г':('Г',.74,.67,7,0),
-        'д':('Д',.75,.69,0,0), 'ж':('Ж',.77,.72,0,0),
-        'з':('З',.76,.71,0,0), 'и':('И',.76,.69,0,0),
-        'к':('К',.72,.72,0,5), 'л':('Л',.76,.74,0,0),
-        'м':('М',.81,.75,0,0), 'н':('Н',.75,.65,0,0),
-        'п':('П',.76,.69,0,0), 'т':('Т',.76,.77,0,0),
-        'ц':('Ц',.76,.70,0,0), 'ч':('Ч',.76,.70,0,0),
-        'ш':('Ш',.80,.70,0,0), 'щ':('Щ',.80,.70,0,0),
-        'ъ':('Ъ',.77,.70,0,0), 'ы':('Ы',.77,.70,0,0),
-        'ь':('Ь',.78,.70,0,0), 'э':('Э',.76,.74,0,0),
-        'ю':('Ю',.76,.76,0,0), 'я':('Я',.76,.73,0,0),
-    }
-    # Widths for native-based caps are resolved from the original hmtx by build.py.
-    for c,(cap,sx,sy,dx,dy) in lower_forms.items():
-        put(c,Drawing(-1).child(g[cap],(sx,0,0,sy,dx,dy)),f'Optically scaled upright {cap}; preserves recognizable Cyrillic skeleton.')
-    d=Drawing(343).native('o',(1.03,0,0,1,10,0))
-    d.brush((65,151,8),(64,280,34),(123,422,41),(216,465,39),(304,482,4))
-    put('б',d,'Round lowercase bowl with a rising flag, distinct from ь and Latin b.')
-    d=Drawing(453).native('o',(1.43,0,0,1.07,5,0))
-    stem(d,213,446,-152,43,9)
-    put('ф',d,'Lowercase bowl at x-height with ascender and descender.')
-
-    breve=Drawing(0).brush((-88,69,4),(-61,14,23),(0,-4,31),(65,26,19),(91,71,3))
+    for c,base,width,box in [('Ө','O',410,(65,139,342,175)),('ө','o',290,(48,119,252,149))]:
+        put(c,dash(Drawing(width).native(base),box),
+            'Original round bowl crossed by a native brush dash, with two open counters.')
+    breve=Drawing(0).fragment('U',crop=(-100,-100,500,139),fit=(-86,-4,87,67))
     dots=Drawing(0)
-    for x,y in [(-58,17),(58,24)]:
-        dots.brush((x-4,y+19,15),(x,y+3,39),(x+7,y-18,7))
-    put('\u0306',breve,'Zero-width combining breve, centered at its attachment anchor.')
-    put('\u0308',dots,'Zero-width combining diaeresis; two distinct brush touches.')
+    dots.fragment('i',crop=(-100,280,300,400),fit=(-79,-3,-36,44))
+    dots.fragment('i',crop=(-100,280,300,400),fit=(35,1,81,48))
+    put('\u0306',breve,'Zero-width breve adapted from the rounded bottom of native U.')
+    put('\u0308',dots,'Two distinct original i brush dots, aligned at the attachment anchor.')
     for c,base,mark,center,height in [('Ё','Е',dots,244,533),('ё','е',dots,183,402),
                                       ('Й','И',breve,230,507),('й','и',breve,178,387)]:
-        put(c,Drawing(-2).child(g[base]).child(mark,(1,0,0,1,center,height)),f'{base} plus matching brush diacritic, with clear separation.')
-    d=Drawing(490).native('T')
-    bar(d,94,356,166,29,22);bar(d,97,358,75,29,22)
-    put('₮',d,'Tugrik sign with two separate bars across the native T stem.')
+        put(c,Drawing(-2).child(g[base]).child(mark,(1,0,0,1,center,height)),
+            f'{base} with the matching original-brush diacritic and clear separation.')
+    d=Drawing(490).native('T');dash(d,(97,155,350,187));dash(d,(99,66,351,99))
+    put('₮',d,'Original T with two separate native brush dashes across the stem.')
     put('\u00a0',Drawing(250),'Nonbreaking space, same advance as upstream space.')
     return g

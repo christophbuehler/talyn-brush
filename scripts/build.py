@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 UPSTREAM = ROOT / 'upstream/NanumBrushScript-Regular.ttf'
 UPSTREAM_SHA = '98e3c5323f813ff6a61486af27aa49073262686bf336eacb77b024fa624254bf'
 FAMILY = 'Talyn Brush'
-VERSION = '0.100'
+VERSION = '0.200'
 EPOCH = 3873657600  # 2026-10-01 00:00:00 UTC, seconds since 1904-01-01
 
 def name(c):

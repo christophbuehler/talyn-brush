@@ -85,7 +85,7 @@ def render():
                                                'pages':pages,'characters':manifest},ensure_ascii=False,indent=2)+'\n')
     (OUT/'charset.txt').write_text('\n'.join(f"{m['codepoint']}\t{m['character']}\t{m['name']}" for m in manifest)+'\n')
     im=Image.new('RGB',(1680,1260),'white');d=ImageDraw.Draw(im)
-    heading(d,'Talyn Brush / Mongolian Cyrillic','35 letters, both cases. Original Latin proportions, new Cyrillic outlines. Preview 0.100.',1680)
+    heading(d,'Talyn Brush / Mongolian Cyrillic','35 letters, both cases. Original Latin proportions, new Cyrillic outlines. Preview 0.200.',1680)
     for i,(upper,lower) in enumerate(zip(UPPER,LOWER)):
         x=45+(i%7)*231;y=135+(i//7)*190
         if upper in 'ӨҮ':d.rectangle((x-5,y-4,x+211,y+168),fill=WASH)
@@ -105,6 +105,26 @@ def render():
     draw_text(im,(70,892),'Hello, Mongolia!   안녕하세요',105)
     d.text((70,1044),'11,863 characters  /  TTF + WOFF2  /  SIL Open Font License 1.1',font=label(18),fill=QUIET)
     save(im,OUT/'preview.png')
+    word_proof()
     print(f'Rendered all {len(cps):,} mappings, {len(pages)} detail sheets, and Cyrillic proofs.')
+
+def word_proof():
+    """Phrase rhythm, recognizability and joined outlines at display sizes."""
+    im=Image.new('RGB',(1800,1600),'white');d=ImageDraw.Draw(im)
+    heading(d,'Talyn Brush / Handwritten Cyrillic',
+            'Revision 0.200. Real brush contours, cursive lowercase, and the unchanged original Latin for comparison.',1800)
+    for y,text,size in [(150,'Өдрөө тэмдэглээрэй',190),
+                        (350,'Монголын сайхан орон',162),
+                        (535,'Өглөөний нар, үдшийн салхи.',132),
+                        (710,'Hello, Mongolia!  a b d g m n u',125),
+                        (890,'Өө Оо  Үү Уу  Ии Йй  Ее Ёё',140),
+                        (1060,'Бб Ьь  Пп Гг  Шш Щщ  Фф Жж Яя',125)]:
+        draw_text(im,(48,y),text,size)
+    d.line((50,1260,1750,1260),fill=WASH,width=2)
+    phrase='Өвөл, хавар, зун, намар. Үүл, уул, ус.'
+    for y,size in [(1290,96),(1410,48),(1510,24)]:
+        d.text((50,y+12),f'{size} px',font=label(17),fill=QUIET)
+        draw_text(im,(170,y),phrase,size)
+    save(im,OUT/'words.png')
 
 if __name__=='__main__':render()

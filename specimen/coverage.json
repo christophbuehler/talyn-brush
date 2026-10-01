@@ -1266,7 +1266,7 @@
       "character": "Д",
       "name": "CYRILLIC CAPITAL LETTER DE",
       "glyph": "uni0414",
-      "glyph_id": 13819,
+      "glyph_id": 13821,
       "new": true,
       "has_ink": true
     },
@@ -1284,7 +1284,7 @@
       "character": "Ж",
       "name": "CYRILLIC CAPITAL LETTER ZHE",
       "glyph": "uni0416",
-      "glyph_id": 13820,
+      "glyph_id": 13822,
       "new": true,
       "has_ink": true
     },
@@ -1293,7 +1293,7 @@
       "character": "З",
       "name": "CYRILLIC CAPITAL LETTER ZE",
       "glyph": "uni0417",
-      "glyph_id": 13821,
+      "glyph_id": 13823,
       "new": true,
       "has_ink": true
     },
@@ -1302,7 +1302,7 @@
       "character": "И",
       "name": "CYRILLIC CAPITAL LETTER I",
       "glyph": "uni0418",
-      "glyph_id": 13822,
+      "glyph_id": 13819,
       "new": true,
       "has_ink": true
     },
@@ -1329,7 +1329,7 @@
       "character": "Л",
       "name": "CYRILLIC CAPITAL LETTER EL",
       "glyph": "uni041B",
-      "glyph_id": 13823,
+      "glyph_id": 13820,
       "new": true,
       "has_ink": true
     },
@@ -1410,7 +1410,7 @@
       "character": "Ф",
       "name": "CYRILLIC CAPITAL LETTER EF",
       "glyph": "uni0424",
-      "glyph_id": 13828,
+      "glyph_id": 13827,
       "new": true,
       "has_ink": true
     },
@@ -1428,7 +1428,7 @@
       "character": "Ц",
       "name": "CYRILLIC CAPITAL LETTER TSE",
       "glyph": "uni0426",
-      "glyph_id": 13829,
+      "glyph_id": 13828,
       "new": true,
       "has_ink": true
     },
@@ -1437,7 +1437,7 @@
       "character": "Ч",
       "name": "CYRILLIC CAPITAL LETTER CHE",
       "glyph": "uni0427",
-      "glyph_id": 13830,
+      "glyph_id": 13829,
       "new": true,
       "has_ink": true
     },
@@ -1446,7 +1446,7 @@
       "character": "Ш",
       "name": "CYRILLIC CAPITAL LETTER SHA",
       "glyph": "uni0428",
-      "glyph_id": 13831,
+      "glyph_id": 13830,
       "new": true,
       "has_ink": true
     },
@@ -1455,7 +1455,7 @@
       "character": "Щ",
       "name": "CYRILLIC CAPITAL LETTER SHCHA",
       "glyph": "uni0429",
-      "glyph_id": 13832,
+      "glyph_id": 13831,
       "new": true,
       "has_ink": true
     },
@@ -1464,7 +1464,7 @@
       "character": "Ъ",
       "name": "CYRILLIC CAPITAL LETTER HARD SIGN",
       "glyph": "uni042A",
-      "glyph_id": 13834,
+      "glyph_id": 13833,
       "new": true,
       "has_ink": true
     },
@@ -1473,7 +1473,7 @@
       "character": "Ы",
       "name": "CYRILLIC CAPITAL LETTER YERU",
       "glyph": "uni042B",
-      "glyph_id": 13835,
+      "glyph_id": 13834,
       "new": true,
       "has_ink": true
     },
@@ -1482,7 +1482,7 @@
       "character": "Ь",
       "name": "CYRILLIC CAPITAL LETTER SOFT SIGN",
       "glyph": "uni042C",
-      "glyph_id": 13833,
+      "glyph_id": 13832,
       "new": true,
       "has_ink": true
     },
@@ -1491,7 +1491,7 @@
       "character": "Э",
       "name": "CYRILLIC CAPITAL LETTER E",
       "glyph": "uni042D",
-      "glyph_id": 13836,
+      "glyph_id": 13835,
       "new": true,
       "has_ink": true
     },
@@ -1500,7 +1500,7 @@
       "character": "Ю",
       "name": "CYRILLIC CAPITAL LETTER YU",
       "glyph": "uni042E",
-      "glyph_id": 13837,
+      "glyph_id": 13836,
       "new": true,
       "has_ink": true
     },
@@ -1509,7 +1509,7 @@
       "character": "Я",
       "name": "CYRILLIC CAPITAL LETTER YA",
       "glyph": "uni042F",
-      "glyph_id": 13838,
+      "glyph_id": 13837,
       "new": true,
       "has_ink": true
     },
@@ -1527,7 +1527,7 @@
       "character": "б",
       "name": "CYRILLIC SMALL LETTER BE",
       "glyph": "uni0431",
-      "glyph_id": 13863,
+      "glyph_id": 13847,
       "new": true,
       "has_ink": true
     },
@@ -1536,7 +1536,7 @@
       "character": "в",
       "name": "CYRILLIC SMALL LETTER VE",
       "glyph": "uni0432",
-      "glyph_id": 13841,
+      "glyph_id": 13848,
       "new": true,
       "has_ink": true
     },
@@ -1545,7 +1545,7 @@
       "character": "г",
       "name": "CYRILLIC SMALL LETTER GHE",
       "glyph": "uni0433",
-      "glyph_id": 13842,
+      "glyph_id": 13846,
       "new": true,
       "has_ink": true
     },
@@ -1554,7 +1554,7 @@
       "character": "д",
       "name": "CYRILLIC SMALL LETTER DE",
       "glyph": "uni0434",
-      "glyph_id": 13843,
+      "glyph_id": 13841,
       "new": true,
       "has_ink": true
     },
@@ -1572,7 +1572,7 @@
       "character": "ж",
       "name": "CYRILLIC SMALL LETTER ZHE",
       "glyph": "uni0436",
-      "glyph_id": 13844,
+      "glyph_id": 13849,
       "new": true,
       "has_ink": true
     },
@@ -1581,7 +1581,7 @@
       "character": "з",
       "name": "CYRILLIC SMALL LETTER ZE",
       "glyph": "uni0437",
-      "glyph_id": 13845,
+      "glyph_id": 13850,
       "new": true,
       "has_ink": true
     },
@@ -1590,7 +1590,7 @@
       "character": "и",
       "name": "CYRILLIC SMALL LETTER I",
       "glyph": "uni0438",
-      "glyph_id": 13846,
+      "glyph_id": 13839,
       "new": true,
       "has_ink": true
     },
@@ -1608,7 +1608,7 @@
       "character": "к",
       "name": "CYRILLIC SMALL LETTER KA",
       "glyph": "uni043A",
-      "glyph_id": 13847,
+      "glyph_id": 13842,
       "new": true,
       "has_ink": true
     },
@@ -1617,7 +1617,7 @@
       "character": "л",
       "name": "CYRILLIC SMALL LETTER EL",
       "glyph": "uni043B",
-      "glyph_id": 13848,
+      "glyph_id": 13843,
       "new": true,
       "has_ink": true
     },
@@ -1626,7 +1626,7 @@
       "character": "м",
       "name": "CYRILLIC SMALL LETTER EM",
       "glyph": "uni043C",
-      "glyph_id": 13849,
+      "glyph_id": 13844,
       "new": true,
       "has_ink": true
     },
@@ -1635,7 +1635,7 @@
       "character": "н",
       "name": "CYRILLIC SMALL LETTER EN",
       "glyph": "uni043D",
-      "glyph_id": 13850,
+      "glyph_id": 13845,
       "new": true,
       "has_ink": true
     },
@@ -1653,7 +1653,7 @@
       "character": "п",
       "name": "CYRILLIC SMALL LETTER PE",
       "glyph": "uni043F",
-      "glyph_id": 13851,
+      "glyph_id": 13838,
       "new": true,
       "has_ink": true
     },
@@ -1680,7 +1680,7 @@
       "character": "т",
       "name": "CYRILLIC SMALL LETTER TE",
       "glyph": "uni0442",
-      "glyph_id": 13852,
+      "glyph_id": 13840,
       "new": true,
       "has_ink": true
     },
@@ -1698,7 +1698,7 @@
       "character": "ф",
       "name": "CYRILLIC SMALL LETTER EF",
       "glyph": "uni0444",
-      "glyph_id": 13864,
+      "glyph_id": 13852,
       "new": true,
       "has_ink": true
     },
@@ -1752,7 +1752,7 @@
       "character": "ъ",
       "name": "CYRILLIC SMALL LETTER HARD SIGN",
       "glyph": "uni044A",
-      "glyph_id": 13857,
+      "glyph_id": 13858,
       "new": true,
       "has_ink": true
     },
@@ -1761,7 +1761,7 @@
       "character": "ы",
       "name": "CYRILLIC SMALL LETTER YERU",
       "glyph": "uni044B",
-      "glyph_id": 13858,
+      "glyph_id": 13859,
       "new": true,
       "has_ink": true
     },
@@ -1770,7 +1770,7 @@
       "character": "ь",
       "name": "CYRILLIC SMALL LETTER SOFT SIGN",
       "glyph": "uni044C",
-      "glyph_id": 13859,
+      "glyph_id": 13857,
       "new": true,
       "has_ink": true
     },
@@ -1824,7 +1824,7 @@
       "character": "ү",
       "name": "CYRILLIC SMALL LETTER STRAIGHT U",
       "glyph": "uni04AF",
-      "glyph_id": 13827,
+      "glyph_id": 13851,
       "new": true,
       "has_ink": true
     },
@@ -1833,7 +1833,7 @@
       "character": "Ө",
       "name": "CYRILLIC CAPITAL LETTER BARRED O",
       "glyph": "uni04E8",
-      "glyph_id": 13839,
+      "glyph_id": 13863,
       "new": true,
       "has_ink": true
     },
@@ -1842,7 +1842,7 @@
       "character": "ө",
       "name": "CYRILLIC SMALL LETTER BARRED O",
       "glyph": "uni04E9",
-      "glyph_id": 13840,
+      "glyph_id": 13864,
       "new": true,
       "has_ink": true
     },

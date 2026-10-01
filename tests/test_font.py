@@ -82,7 +82,8 @@ def test_reserved_names_removed_from_every_primary_name(font):
     UPPER,LOWER,'Монголын сайхан орон','Өглөөний нар, үдшийн салхи.',
     'Өвөл, хавар, зун, намар. Үүл, уул, ус.','Өө Оо Үү Уу Ёё Йй 10 000 ₮',
     'Съешь ещё этих мягких французских булок, да выпей чаю.',
-    'Hello, Mongolia! 안녕하세요',
+    'Hello, Mongolia! 안녕하세요', 'Өдрөө тэмдэглээрэй',
+    'Монгол сайхан шүү. Бб Ьь Пп Гг Шш Щщ Фф Жж Яя',
 ])
 def test_shaping_without_missing_glyphs(text):
     glyphs=shape(text)
@@ -152,3 +153,24 @@ def test_manifest_checksums():
     manifest=json.loads((ROOT/'fonts/manifest.json').read_text())
     for filename,sha in manifest['files'].items():
         assert hashlib.sha256((ROOT/'fonts'/filename).read_bytes()).hexdigest() == sha
+
+
+def test_joined_strokes_and_open_counters(font):
+    # Mirrors used to cancel overlapping strokes, cutting hairline gaps through
+    # stems and joins. Count outer contours and enclosed counters independently
+    # of how the recipe assembles them. These are single connected bodies.
+    from fontTools.pens.areaPen import AreaPen
+    from fontTools.pens.recordingPen import RecordingPen
+    expected_holes={**dict.fromkeys('ГгПпЖжШшЩщЦцЧч',0),
+                    **dict.fromkeys('ЬьЮюя',1), **dict.fromkeys('ӨөФф',2)}
+    gs=font.getGlyphSet();cmap=font.getBestCmap()
+    for char,holes in expected_holes.items():
+        recording=RecordingPen();gs[cmap[ord(char)]].draw(recording)
+        areas=[];pen=AreaPen(gs)
+        for op,points in recording.value:
+            getattr(pen,op)(*points)
+            if op=='closePath':
+                areas.append(pen.value);pen=AreaPen(gs)
+        # TrueType outer contours run clockwise, counter contours anticlockwise.
+        assert sum(a<0 for a in areas)==1, (char,areas)
+        assert sum(a>0 for a in areas)==holes, (char,areas)
