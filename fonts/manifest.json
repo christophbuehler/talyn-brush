@@ -1,6 +1,6 @@
 {
   "family": "Talyn Brush",
-  "version": "0.300",
+  "version": "0.400",
   "upstream_sha256": "98e3c5323f813ff6a61486af27aa49073262686bf336eacb77b024fa624254bf",
   "original_characters": 11789,
   "characters": 11871,
@@ -136,14 +136,14 @@
       "character": "Б",
       "glyph": "uni0411",
       "advance": 427,
-      "construction": "Round native b lower bowl, rising stem, and a full-width brush flag."
+      "construction": "Round native b lower bowl and rising stem; the flag is the original E bar at full weight."
     },
     {
       "codepoint": "U+0413",
       "character": "Г",
       "glyph": "uni0413",
-      "advance": 387,
-      "construction": "Native tapered stem and original brush dash, joined at the upper left."
+      "advance": 390,
+      "construction": "Original F with its middle bar removed along the stem: the same pen as E, F and T."
     },
     {
       "codepoint": "U+0418",
@@ -156,15 +156,15 @@
       "codepoint": "U+041B",
       "character": "Л",
       "glyph": "uni041B",
-      "advance": 410,
-      "construction": "Native V turned into an open el, retaining the irregular flowing legs."
+      "advance": 425,
+      "construction": "Original A without its crossbar: a bowed left leg with a brush foot and a longer right leg."
     },
     {
       "codepoint": "U+0414",
       "character": "Д",
       "glyph": "uni0414",
-      "advance": 467,
-      "construction": "Open el body with a low brushed base and two falling feet."
+      "advance": 480,
+      "construction": "Open A body on a brushed base, with the brush ends of two l stems as feet."
     },
     {
       "codepoint": "U+0416",
@@ -185,7 +185,7 @@
       "character": "П",
       "glyph": "uni041F",
       "advance": 476,
-      "construction": "Two full native brush stems joined by a free upper flag."
+      "construction": "Two full native l stems joined by a free upper brush bar."
     },
     {
       "codepoint": "U+0423",
@@ -212,8 +212,8 @@
       "codepoint": "U+0426",
       "character": "Ц",
       "glyph": "uni0426",
-      "advance": 457,
-      "construction": "Open bowl and full-height right stem with a short curved descender."
+      "advance": 462,
+      "construction": "Original U bowl, drawn to cap height, with a short curved descender."
     },
     {
       "codepoint": "U+0427",
@@ -227,7 +227,7 @@
       "character": "Ш",
       "glyph": "uni0428",
       "advance": 616,
-      "construction": "Three full-height brush stems joined by a low, freely drawn baseline."
+      "construction": "Three full-height l stems joined by a low, freely drawn brush base."
     },
     {
       "codepoint": "U+0429",
@@ -248,21 +248,21 @@
       "character": "Ъ",
       "glyph": "uni042A",
       "advance": 471,
-      "construction": "Soft-sign bowl with a broad left-projecting shoulder."
+      "construction": "Soft-sign bowl with a broad left-projecting shoulder cut from the E bar."
     },
     {
       "codepoint": "U+042B",
       "character": "Ы",
       "glyph": "uni042B",
       "advance": 567,
-      "construction": "Soft-sign body and a detached brush stem with breathing room."
+      "construction": "Soft-sign body and a detached full-weight brush stem with breathing room."
     },
     {
       "codepoint": "U+042D",
       "character": "Э",
       "glyph": "uni042D",
       "advance": 425,
-      "construction": "Original C reversed, with an organic middle tongue."
+      "construction": "Original C reversed, with a tongue cut from the E bar that tapers into the counter."
     },
     {
       "codepoint": "U+042E",
@@ -304,21 +304,21 @@
       "character": "д",
       "glyph": "uni0434",
       "advance": 320,
-      "construction": "Handwritten д using the original g brush skeleton at full stroke weight."
+      "construction": "Handwritten д on the original g skeleton; the descender is shortened to sit with р."
     },
     {
       "codepoint": "U+043A",
       "character": "к",
       "glyph": "uni043A",
-      "advance": 403,
-      "construction": "Original k branches and stem, with the ascender lowered to Cyrillic x-height."
+      "advance": 372,
+      "construction": "Original k branches on a dotless i stem, the upper arm lowered to x-height."
     },
     {
       "codepoint": "U+043B",
       "character": "л",
       "glyph": "uni043B",
       "advance": 318,
-      "construction": "Open handwritten el with curved, unequal legs adapted from native v."
+      "construction": "Native v turned through 180 degrees: a thin rising entry and a heavy falling right leg."
     },
     {
       "codepoint": "U+043C",
@@ -331,29 +331,29 @@
       "codepoint": "U+043D",
       "character": "н",
       "glyph": "uni043D",
-      "advance": 351,
-      "construction": "Short en with the original H diagonal cross stroke and uneven stems."
+      "advance": 350,
+      "construction": "Short en from two dotless i stems and a brush crossbar at full weight."
     },
     {
       "codepoint": "U+0433",
       "character": "г",
       "glyph": "uni0433",
-      "advance": 284,
-      "construction": "Open handwritten ge with a flowing native flag and tapered downstroke."
+      "advance": 290,
+      "construction": "Open handwritten ge: dotless i stem with the E bar as its flag, both at full weight."
     },
     {
       "codepoint": "U+0431",
       "character": "б",
       "glyph": "uni0431",
       "advance": 351,
-      "construction": "Full-weight round bowl with a rising, right-turning flag."
+      "construction": "Full-weight round bowl with a rising, right-turning brush flag."
     },
     {
       "codepoint": "U+0432",
       "character": "в",
       "glyph": "uni0432",
-      "advance": 333,
-      "construction": "Ascending handwritten ve, with a small upper loop and generous lower bowl."
+      "advance": 340,
+      "construction": "Print-form ve from the original B, kept broad so its bowls stay open at x-height."
     },
     {
       "codepoint": "U+0436",
@@ -366,15 +366,15 @@
       "codepoint": "U+0437",
       "character": "з",
       "glyph": "uni0437",
-      "advance": 294,
+      "advance": 310,
       "construction": "Two unequal, open bowls with the source digit’s lively brush modulation."
     },
     {
       "codepoint": "U+04AF",
       "character": "ү",
       "glyph": "uni04AF",
-      "advance": 344,
-      "construction": "Native Y fork at x-height, with a long straight falling stem distinct from у."
+      "advance": 292,
+      "construction": "Native v fork at x-height on a straight dotless i stem, distinct from у."
     },
     {
       "codepoint": "U+0444",
@@ -423,28 +423,28 @@
       "character": "ъ",
       "glyph": "uni044A",
       "advance": 370,
-      "construction": "Soft-sign bowl with an overhanging native brush shoulder."
+      "construction": "Soft-sign bowl with an overhanging brush shoulder cut from the E bar."
     },
     {
       "codepoint": "U+044B",
       "character": "ы",
       "glyph": "uni044B",
       "advance": 476,
-      "construction": "Round soft-sign bowl and an undotted i stroke at full lowercase weight."
+      "construction": "Round soft-sign bowl and a dotless i stem at full lowercase weight."
     },
     {
       "codepoint": "U+044D",
       "character": "э",
       "glyph": "uni044D",
       "advance": 314,
-      "construction": "Native c reversed, with a tapered middle tongue and open apertures."
+      "construction": "Native c reversed, with a tapered tongue cut from the E bar."
     },
     {
       "codepoint": "U+044E",
       "character": "ю",
       "glyph": "uni044E",
       "advance": 463,
-      "construction": "Undotted i entry joined to the original o at full lowercase weight."
+      "construction": "Dotless i entry joined to the original o at full lowercase weight."
     },
     {
       "codepoint": "U+044F",
@@ -458,14 +458,14 @@
       "character": "Ө",
       "glyph": "uni04E8",
       "advance": 410,
-      "construction": "Original round bowl crossed by a native brush dash, with two open counters."
+      "construction": "Original round bowl crossed by the native brush dash at its full weight; two open counters."
     },
     {
       "codepoint": "U+04E9",
       "character": "ө",
       "glyph": "uni04E9",
       "advance": 290,
-      "construction": "Original round bowl crossed by a native brush dash, with two open counters."
+      "construction": "Original round bowl crossed by the native brush dash at its full weight; two open counters."
     },
     {
       "codepoint": "U+0306",
@@ -555,8 +555,8 @@
       "codepoint": "U+00DF",
       "character": "ß",
       "glyph": "uni00DF",
-      "advance": 449,
-      "construction": "Long-s head and falling stroke joined to a native s; open lower bowl."
+      "advance": 440,
+      "construction": "Original f without its crossbar as a long s, joined to the native s drawn up to the hook."
     },
     {
       "codepoint": "U+1E9E",
@@ -583,7 +583,7 @@
   "alphabet_upper": "АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ",
   "alphabet_lower": "абвгдеёжзийклмноөпрстуүфхцчшщъыьэюя",
   "files": {
-    "TalynBrush-Regular.ttf": "2354c4d72f99dd5c1cbbdadd0802e7de92c239d36dc2b00b1485e66a3c95c7a0",
-    "TalynBrush-Regular.woff2": "f20eabac7b7998bc81f89eeba3a91b7315192a8d4dfd774597fe0c7c2242ca30"
+    "TalynBrush-Regular.ttf": "e0721e9e87f86fc8ceceaef37fc2f85dcfd695c8a1ad4630a7b82d16e777648d",
+    "TalynBrush-Regular.woff2": "b6c825634f6a307ab4baf6005a4f68a7a630a0dfd13c0ae8fd496b290481e243"
   }
 }

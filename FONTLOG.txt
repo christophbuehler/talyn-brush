@@ -3,7 +3,27 @@ FONTLOG for Talyn Brush
 Talyn Brush is an independent modified version of Nanum Brush Script.
 It is distributed under the SIL Open Font License 1.1. See OFL.txt.
 
-2026-10-01 — Talyn Brush 0.300 (release tag v0.3.0; preview)
+2026-10-01: Talyn Brush 0.400 (release tag v0.4.0; preview)
+- Redrew every constructed stroke at the original pen weight after visual
+  review of 0.300 found thin, straight flags and crossbars (г measured 27
+  units against 55-70 in the source) and squeezed stems in Г, П, Ш and Щ.
+- New rule in the recipes: a stroke is stretched only along its own length.
+  Stems come from the original l and dotless i, bars from the hyphen and the
+  middle bar of E, with no scaling across their thickness.
+- Rebuilt Г from F without its middle bar, Л and Д from A without its
+  crossbar, Ц from U, н and к on dotless i stems, ү as a v fork on a
+  straight stem, л as a rotated v with a thin entry and heavy right leg.
+- Replaced thin fitted dashes in Ө ө Э э Ю ю Б б Ъ ъ ₮ with full-weight
+  brush bars; shortened the д descender to sit with р.
+- Redrew ß as the original f without its crossbar joined to the native s,
+  removing the knotted head of 0.300; ẞ follows.
+- Added a stroke-weight regression test that rasterises every added letter
+  and rejects strokes thinner than the source pen.
+- Added polygon cuts to the recipe tool so a stroke can be separated from a
+  neighbouring one along its own edge.
+- Retained all inherited glyphs, metrics, hinting, GSUB and licensing data.
+
+2026-10-01: Talyn Brush 0.300 (release tag v0.3.0; preview)
 - Added German Ä Ö Ü ä ö ü ß ẞ, all missing from the original font.
 - Composed umlauts from original Latin bodies and native brush dots, with
   unchanged base advances and optical mark positions shared with GPOS.
@@ -14,7 +34,7 @@ It is distributed under the SIL Open Font License 1.1. See OFL.txt.
 - Retained the revised Cyrillic outlines from 0.200 and every upstream glyph.
 - Updated derivative copyright wording to credit German as well as Cyrillic.
 
-2026-10-01 — Talyn Brush 0.200 (release tag v0.2.0; preview)
+2026-10-01: Talyn Brush 0.200 (release tag v0.2.0; preview)
 - Reworked the Cyrillic design after feedback on rigid miniature capitals.
 - Introduced handwritten lowercase forms for и, п, т, д and ш, and reshaped
   the other constructed letters using actual original brush contours.
@@ -28,7 +48,7 @@ It is distributed under the SIL Open Font License 1.1. See OFL.txt.
 - Retained all inherited glyphs and licensing metadata without changes.
 - Remains a preview awaiting independent native Mongolian/type-design review.
 
-2026-10-01 — Talyn Brush 0.100 (release tag v0.1.0; preview)
+2026-10-01: Talyn Brush 0.100 (release tag v0.1.0; preview)
 - Preserved the exact user-supplied original TTF and OFL in upstream/.
 - Preserved all 11,789 original Unicode mappings and every original glyph
   outline, advance width, sidebearing, hinting program, and GSUB rule.

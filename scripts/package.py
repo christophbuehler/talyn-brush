@@ -7,7 +7,7 @@ import os
 import shutil
 import zipfile
 ROOT=Path(__file__).resolve().parents[1]
-VERSION='v0.3.0'
+VERSION='v0.4.0'
 
 def package():
     build=ROOT/'build';build.mkdir(exist_ok=True)

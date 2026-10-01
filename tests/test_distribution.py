@@ -27,8 +27,8 @@ def test_atlas_covers_exactly_the_built_cmap():
         with Image.open(ROOT/'specimen/pages'/page['file']) as image:image.verify()
 
 def test_release_package_includes_license_and_exact_font():
-    with zipfile.ZipFile(ROOT/'build/TalynBrush-v0.3.0.zip') as archive:
-        prefix='TalynBrush-v0.3.0/'
+    with zipfile.ZipFile(ROOT/'build/TalynBrush-v0.4.0.zip') as archive:
+        prefix='TalynBrush-v0.4.0/'
         for path in ['OFL.txt','FONTLOG.txt','docs/OFL-FAQ.txt','fonts/TalynBrush-Regular.ttf','fonts/TalynBrush-Regular.woff2','specimen/words.png','specimen/german.png']:
             assert archive.read(prefix+path)==(ROOT/path).read_bytes()
         assert not any('NanumBrushScript-Regular.ttf' in p for p in archive.namelist())

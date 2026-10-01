@@ -85,7 +85,7 @@ def render():
                                                'pages':pages,'characters':manifest},ensure_ascii=False,indent=2)+'\n')
     (OUT/'charset.txt').write_text('\n'.join(f"{m['codepoint']}\t{m['character']}\t{m['name']}" for m in manifest)+'\n')
     im=Image.new('RGB',(1680,1260),'white');d=ImageDraw.Draw(im)
-    heading(d,'Talyn Brush / Mongolian Cyrillic','35 letters, both cases. Original Latin proportions, new Cyrillic outlines. Preview 0.300.',1680)
+    heading(d,'Talyn Brush / Mongolian Cyrillic','35 letters, both cases. Original Latin proportions, new Cyrillic outlines. Preview 0.400.',1680)
     for i,(upper,lower) in enumerate(zip(UPPER,LOWER)):
         x=45+(i%7)*231;y=135+(i//7)*190
         if upper in 'ӨҮ':d.rectangle((x-5,y-4,x+211,y+168),fill=WASH)
@@ -113,7 +113,7 @@ def word_proof():
     """Phrase rhythm, recognizability and joined outlines at display sizes."""
     im=Image.new('RGB',(1800,1600),'white');d=ImageDraw.Draw(im)
     heading(d,'Talyn Brush / Handwritten Cyrillic',
-            'Revision 0.300. Real brush contours, cursive lowercase, and the unchanged original Latin for comparison.',1800)
+            'Revision 0.400. Full-weight brush strokes throughout, cursive lowercase, and the unchanged original Latin for comparison.',1800)
     for y,text,size in [(150,'Өдрөө тэмдэглээрэй',190),
                         (350,'Монголын сайхан орон',162),
                         (535,'Өглөөний нар, үдшийн салхи.',132),
@@ -131,7 +131,7 @@ def word_proof():
 def german_proof():
     im=Image.new('RGB',(1850,1430),'white');d=ImageDraw.Draw(im)
     heading(d,'Talyn Brush / German',
-            'Revision 0.300. Original Latin letters, native brush dots, and sharp S. NFC and NFD are both tested.',1850)
+            'Revision 0.400. Original Latin letters, native brush dots, and a long-s sharp S. NFC and NFD are both tested.',1850)
     for y,text,size in [(120,'Ää  Öö  Üü  ß  ẞ',215),
                         (360,'Grüße aus Zürich!',182),
                         (555,'Schöne Grüße, süße Träume.',156),

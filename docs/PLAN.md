@@ -34,3 +34,7 @@ Review: the bold element is the type itself. The page is a practical font proof 
 ## Revision 0.300
 
 Add the missing German umlauts and sharp S while keeping the Cyrillic redraw. Compose accents from original Latin bodies and brush dots; verify normalization and original advances. Add a dedicated German proof and tester sample, regenerate every atlas page, and publish after the complete checks pass.
+
+## Revision 0.400
+
+Act on the review of the 0.300 proofs: inconsistent stroke weight between constructed and inherited letters. Measure every added letter against the source pen, replace fitted stems and dashes with strokes that are only ever scaled along their length, add polygon cuts so F, A and f can lend their stems without their bars, and guard the result with a stroke-weight regression test. Rebuild all proofs, repackage, and release as v0.4.0.

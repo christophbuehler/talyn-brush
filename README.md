@@ -4,7 +4,7 @@ A Mongolian Cyrillic extension of **Nanum Brush Script**, released under its req
 
 [![Build, test, render & publish](https://github.com/christophbuehler/talyn-brush/actions/workflows/font.yml/badge.svg)](https://github.com/christophbuehler/talyn-brush/actions/workflows/font.yml)
 
-[**Try the font**](https://christophbuehler.github.io/talyn-brush/) · [**Download the licensed package**](https://github.com/christophbuehler/talyn-brush/releases/tag/v0.3.0) · [**All 11,871 characters in one image**](https://christophbuehler.github.io/talyn-brush/specimen/all-characters.png)
+[**Try the font**](https://christophbuehler.github.io/talyn-brush/) · [**Download the licensed package**](https://github.com/christophbuehler/talyn-brush/releases/tag/v0.4.0) · [**All 11,871 characters in one image**](https://christophbuehler.github.io/talyn-brush/specimen/all-characters.png)
 
 ![Talyn Brush: Mongolian phrases, Өө and Үү, Latin and Korean](specimen/preview.png)
 
@@ -15,7 +15,7 @@ A Mongolian Cyrillic extension of **Nanum Brush Script**, released under its req
 - **82 additions**: 70 Cyrillic letters, eight German letters, combining breve and diaeresis, nonbreaking space, and the tugrik sign **₮**.
 - Installable **TTF** and web **WOFF2**, reproducible sources, outline SVGs, and automated proofs.
 
-**Version 0.300 / release v0.3.0 is a preview.** The outlines have automated checks and visual inspection, but have not yet had independent review by a native Mongolian type designer. Feedback on rhythm, spacing, and letterforms is welcome. Traditional vertical Mongolian and the rest of the Cyrillic Extended blocks are outside this release’s scope.
+**Version 0.400 / release v0.4.0 is a preview.** Revision 0.400 redraws every constructed stroke at the original pen weight after review of the 0.300 proofs. The outlines have automated checks and visual inspection, but have not yet had independent review by a native Mongolian type designer. Feedback on rhythm, spacing, and letterforms is welcome. Traditional vertical Mongolian and the rest of the Cyrillic Extended blocks are outside this release’s scope.
 
 ## The alphabet
 
@@ -25,13 +25,13 @@ A Mongolian Cyrillic extension of **Nanum Brush Script**, released under its req
 
 [![Every Mongolian Cyrillic letter in both cases](specimen/cyrillic.png)](https://christophbuehler.github.io/talyn-brush/specimen/cyrillic.png)
 
-Ө is a barred O, never a slashed O. Ү has a straight stem, distinct from У’s descending tail. The Cyrillic revision replaces the rigid miniature capitals with handwritten lowercase: и has a rounded u-shaped movement, п an n-shaped arch, т an m-shaped rhythm, д a descending g-shaped form, and ш two flowing troughs. Shared Latin/Cyrillic skeletons reuse the original brush outlines; other forms reshape and join pieces of that same brushwork for Cyrillic. See [design notes](docs/DESIGN.md) and the [construction recipes](sources/cyrillic.py).
+Ө is a barred O, never a slashed O. Ү has a straight stem, distinct from У’s descending tail. The lowercase is handwritten: и has a rounded u-shaped movement, п an n-shaped arch, т an m-shaped rhythm, д a descending g-shaped form, and ш two flowing troughs. Shared Latin/Cyrillic skeletons reuse the original brush outlines; other forms crop, reflect and join pieces of that same brushwork. Since 0.400 every stroke keeps the source pen’s 55 to 70 unit weight: stems are only ever stretched along their length, bars only along theirs, so Г, г, П, Ш, the Ө crossbar and the Э tongue now sit with the same weight as their neighbours. See [design notes](docs/DESIGN.md) and the [construction recipes](sources/cyrillic.py).
 
 ## German letters
 
-**Ä Ö Ü ä ö ü ß ẞ** are included from version 0.300. The umlauts use the original Latin bodies and widths with matching brush dots. Both precomposed characters and a base letter followed by U+0308 work. ß and ẞ have their own outlines and Unicode mappings.
+**Ä Ö Ü ä ö ü ß ẞ** are included from version 0.300. The umlauts use the original Latin bodies and widths with matching brush dots. Both precomposed characters and a base letter followed by U+0308 work. ß and ẞ have their own outlines and Unicode mappings; since 0.400 the sharp S is the original f without its crossbar, a long s, joined to the native s.
 
-[German word and small-size proof](https://christophbuehler.github.io/talyn-brush/specimen/german.png?v=0.300). Select **Deutsch** in the live tester, or type your own words. This adds the German repertoire; it does not claim complete Latin Extended coverage.
+[German word and small-size proof](https://christophbuehler.github.io/talyn-brush/specimen/german.png?v=0.400). Select **Deutsch** in the live tester, or type your own words. This adds the German repertoire; it does not claim complete Latin Extended coverage.
 
 ## Every character, rendered by CI
 
@@ -39,7 +39,7 @@ Every push and pull request builds the fonts, tests them, and renders **every Un
 
 - [Complete character atlas — one PNG, approximately 4.9 MB](https://christophbuehler.github.io/talyn-brush/specimen/all-characters.png)
 - [31 readable atlas sheets](https://christophbuehler.github.io/talyn-brush/#atlas-title)
-- [German letters and words](https://christophbuehler.github.io/talyn-brush/specimen/german.png?v=0.300)
+- [German letters and words](https://christophbuehler.github.io/talyn-brush/specimen/german.png?v=0.400)
 - [Word rhythm and 24/48/96 px proof](https://christophbuehler.github.io/talyn-brush/specimen/words.png)
 - [Mongolian Cyrillic proof](https://christophbuehler.github.io/talyn-brush/specimen/cyrillic.png)
 - [Machine-readable coverage, glyph IDs, and ink checks](specimen/coverage.json) and [plain character list](specimen/charset.txt)
@@ -48,7 +48,7 @@ Every push and pull request builds the fonts, tests them, and renders **every Un
 
 ## Use
 
-Download and unzip the [release package](https://github.com/christophbuehler/talyn-brush/releases/tag/v0.3.0). Install `fonts/TalynBrush-Regular.ttf` for desktop use. For the web, keep the license alongside your distributed font:
+Download and unzip the [release package](https://github.com/christophbuehler/talyn-brush/releases/tag/v0.4.0). Install `fonts/TalynBrush-Regular.ttf` for desktop use. For the web, keep the license alongside your distributed font:
 
 ```css
 @font-face {
@@ -84,7 +84,7 @@ python scripts/check_reproducible.py
 python -m http.server 8000 --directory site
 ```
 
-CI also checks both binaries with **OpenType Sanitizer** and requires the rebuilt font files to match the committed ones. It checks preservation of the entire upstream glyph inventory, cmap coverage, license/name metadata, marks, kerning, normalization, FreeType rendering at multiple sizes, TTF/WOFF2 equivalence, atlas completeness, and package contents. Font files are reproducible; raster images may vary slightly with FreeType versions.
+CI also checks both binaries with **OpenType Sanitizer** and requires the rebuilt font files to match the committed ones. It checks preservation of the entire upstream glyph inventory, cmap coverage, license/name metadata, marks, kerning, normalization, FreeType rendering at multiple sizes, stroke weight of every added letter against the source pen, TTF/WOFF2 equivalence, atlas completeness, and package contents. Font files are reproducible; raster images may vary slightly with FreeType versions.
 
 Edit `sources/cyrillic.py` to change the new outlines. The build exports `sources/svg/` for vector inspection and `sources/features.fea` for layout inspection; both are generated outputs. The original TTF remains the source for inherited glyphs. Every `v*` tag must match the declared package version before the workflow creates a preview release.
 

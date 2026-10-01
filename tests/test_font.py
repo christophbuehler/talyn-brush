@@ -214,3 +214,33 @@ def test_latin_diaeresis_attachment_without_precomposition():
         a,mark=buf.glyph_positions
         assert mark.x_advance==0
         assert (a.x_advance+mark.x_offset,mark.y_offset)==(x,y)
+
+
+def test_added_strokes_keep_the_source_pen_weight():
+    # Revision 0.400: strokes may be stretched along their length but never
+    # squeezed across their thickness. The lightest regular source stroke (o)
+    # has a median thickness of about 51 units; thin flags and crossbars in
+    # 0.300 measured 25-35. Rasterise at 1 px per unit and take the median
+    # run length across vertical and across horizontal strokes.
+    import re
+    from statistics import median
+    from PIL import Image
+    face=freetype.Face(str(FONT))
+    def raster(f,c,size):
+        f.set_pixel_sizes(0,size);f.load_char(c,freetype.FT_LOAD_RENDER|freetype.FT_LOAD_NO_HINTING)
+        b=f.glyph.bitmap
+        return Image.frombytes('L',(b.width,b.rows),bytes(b.buffer),'raw','L',b.pitch).point(lambda v:255 if v>127 else 0)
+    # Letters that reuse an original outline unchanged (T, for instance, has
+    # the source's own 32-unit stem) are the source's business, not ours.
+    source=freetype.Face(str(UPSTREAM))
+    native={raster(source,chr(cp),200).tobytes() for cp in range(0x41,0x7B)}
+    def runs(image):
+        data=image.tobytes();width=image.width
+        return [len(m) for y in range(image.height)
+                for m in re.findall(b'\\xff+',data[y*width:(y+1)*width])]
+    for c in UPPER+LOWER+GERMAN:
+        if raster(face,c,200).tobytes() in native: continue
+        ink=raster(face,c,1000)
+        across_vertical=median(runs(ink))
+        across_horizontal=median(runs(ink.transpose(Image.Transpose.TRANSPOSE)))
+        assert min(across_vertical,across_horizontal) >= 36, (c,across_vertical,across_horizontal)
