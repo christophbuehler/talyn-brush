@@ -1,192 +1,192 @@
 {
-  "count": 11863,
+  "count": 11871,
   "renderer": "FreeType; direct character mapping; no fallback",
   "pages": [
     {
       "file": "charset-01.png",
       "first": "U+0020",
-      "last": "U+3146",
+      "last": "U+313E",
       "count": 384
     },
     {
       "file": "charset-02.png",
-      "first": "U+3147",
-      "last": "U+ACAE",
+      "first": "U+313F",
+      "last": "U+ACA6",
       "count": 384
     },
     {
       "file": "charset-03.png",
-      "first": "U+ACAF",
-      "last": "U+AE2E",
+      "first": "U+ACA7",
+      "last": "U+AE26",
       "count": 384
     },
     {
       "file": "charset-04.png",
-      "first": "U+AE2F",
-      "last": "U+AFAE",
+      "first": "U+AE27",
+      "last": "U+AFA6",
       "count": 384
     },
     {
       "file": "charset-05.png",
-      "first": "U+AFAF",
-      "last": "U+B12E",
+      "first": "U+AFA7",
+      "last": "U+B126",
       "count": 384
     },
     {
       "file": "charset-06.png",
-      "first": "U+B12F",
-      "last": "U+B2AE",
+      "first": "U+B127",
+      "last": "U+B2A6",
       "count": 384
     },
     {
       "file": "charset-07.png",
-      "first": "U+B2AF",
-      "last": "U+B42E",
+      "first": "U+B2A7",
+      "last": "U+B426",
       "count": 384
     },
     {
       "file": "charset-08.png",
-      "first": "U+B42F",
-      "last": "U+B5AE",
+      "first": "U+B427",
+      "last": "U+B5A6",
       "count": 384
     },
     {
       "file": "charset-09.png",
-      "first": "U+B5AF",
-      "last": "U+B72E",
+      "first": "U+B5A7",
+      "last": "U+B726",
       "count": 384
     },
     {
       "file": "charset-10.png",
-      "first": "U+B72F",
-      "last": "U+B8AE",
+      "first": "U+B727",
+      "last": "U+B8A6",
       "count": 384
     },
     {
       "file": "charset-11.png",
-      "first": "U+B8AF",
-      "last": "U+BA2E",
+      "first": "U+B8A7",
+      "last": "U+BA26",
       "count": 384
     },
     {
       "file": "charset-12.png",
-      "first": "U+BA2F",
-      "last": "U+BBAE",
+      "first": "U+BA27",
+      "last": "U+BBA6",
       "count": 384
     },
     {
       "file": "charset-13.png",
-      "first": "U+BBAF",
-      "last": "U+BD2E",
+      "first": "U+BBA7",
+      "last": "U+BD26",
       "count": 384
     },
     {
       "file": "charset-14.png",
-      "first": "U+BD2F",
-      "last": "U+BEAE",
+      "first": "U+BD27",
+      "last": "U+BEA6",
       "count": 384
     },
     {
       "file": "charset-15.png",
-      "first": "U+BEAF",
-      "last": "U+C02E",
+      "first": "U+BEA7",
+      "last": "U+C026",
       "count": 384
     },
     {
       "file": "charset-16.png",
-      "first": "U+C02F",
-      "last": "U+C1AE",
+      "first": "U+C027",
+      "last": "U+C1A6",
       "count": 384
     },
     {
       "file": "charset-17.png",
-      "first": "U+C1AF",
-      "last": "U+C32E",
+      "first": "U+C1A7",
+      "last": "U+C326",
       "count": 384
     },
     {
       "file": "charset-18.png",
-      "first": "U+C32F",
-      "last": "U+C4AE",
+      "first": "U+C327",
+      "last": "U+C4A6",
       "count": 384
     },
     {
       "file": "charset-19.png",
-      "first": "U+C4AF",
-      "last": "U+C62E",
+      "first": "U+C4A7",
+      "last": "U+C626",
       "count": 384
     },
     {
       "file": "charset-20.png",
-      "first": "U+C62F",
-      "last": "U+C7AE",
+      "first": "U+C627",
+      "last": "U+C7A6",
       "count": 384
     },
     {
       "file": "charset-21.png",
-      "first": "U+C7AF",
-      "last": "U+C92E",
+      "first": "U+C7A7",
+      "last": "U+C926",
       "count": 384
     },
     {
       "file": "charset-22.png",
-      "first": "U+C92F",
-      "last": "U+CAAE",
+      "first": "U+C927",
+      "last": "U+CAA6",
       "count": 384
     },
     {
       "file": "charset-23.png",
-      "first": "U+CAAF",
-      "last": "U+CC2E",
+      "first": "U+CAA7",
+      "last": "U+CC26",
       "count": 384
     },
     {
       "file": "charset-24.png",
-      "first": "U+CC2F",
-      "last": "U+CDAE",
+      "first": "U+CC27",
+      "last": "U+CDA6",
       "count": 384
     },
     {
       "file": "charset-25.png",
-      "first": "U+CDAF",
-      "last": "U+CF2E",
+      "first": "U+CDA7",
+      "last": "U+CF26",
       "count": 384
     },
     {
       "file": "charset-26.png",
-      "first": "U+CF2F",
-      "last": "U+D0AE",
+      "first": "U+CF27",
+      "last": "U+D0A6",
       "count": 384
     },
     {
       "file": "charset-27.png",
-      "first": "U+D0AF",
-      "last": "U+D22E",
+      "first": "U+D0A7",
+      "last": "U+D226",
       "count": 384
     },
     {
       "file": "charset-28.png",
-      "first": "U+D22F",
-      "last": "U+D3AE",
+      "first": "U+D227",
+      "last": "U+D3A6",
       "count": 384
     },
     {
       "file": "charset-29.png",
-      "first": "U+D3AF",
-      "last": "U+D52E",
+      "first": "U+D3A7",
+      "last": "U+D526",
       "count": 384
     },
     {
       "file": "charset-30.png",
-      "first": "U+D52F",
-      "last": "U+D6AE",
+      "first": "U+D527",
+      "last": "U+D6A6",
       "count": 384
     },
     {
       "file": "charset-31.png",
-      "first": "U+D6AF",
+      "first": "U+D6A7",
       "last": "U+FFE6",
-      "count": 343
+      "count": 351
     }
   ],
   "characters": [
@@ -1050,7 +1050,7 @@
       "character": " ",
       "name": "NO-BREAK SPACE",
       "glyph": "uni00A0",
-      "glyph_id": 13872,
+      "glyph_id": 13880,
       "new": true,
       "has_ink": false
     },
@@ -1181,6 +1181,24 @@
       "has_ink": true
     },
     {
+      "codepoint": "U+00C4",
+      "character": "Ä",
+      "name": "LATIN CAPITAL LETTER A WITH DIAERESIS",
+      "glyph": "Adieresis",
+      "glyph_id": 13871,
+      "new": true,
+      "has_ink": true
+    },
+    {
+      "codepoint": "U+00D6",
+      "character": "Ö",
+      "name": "LATIN CAPITAL LETTER O WITH DIAERESIS",
+      "glyph": "Odieresis",
+      "glyph_id": 13872,
+      "new": true,
+      "has_ink": true
+    },
+    {
       "codepoint": "U+00D7",
       "character": "×",
       "name": "MULTIPLICATION SIGN",
@@ -1190,12 +1208,57 @@
       "has_ink": true
     },
     {
+      "codepoint": "U+00DC",
+      "character": "Ü",
+      "name": "LATIN CAPITAL LETTER U WITH DIAERESIS",
+      "glyph": "Udieresis",
+      "glyph_id": 13873,
+      "new": true,
+      "has_ink": true
+    },
+    {
+      "codepoint": "U+00DF",
+      "character": "ß",
+      "name": "LATIN SMALL LETTER SHARP S",
+      "glyph": "germandbls",
+      "glyph_id": 13877,
+      "new": true,
+      "has_ink": true
+    },
+    {
+      "codepoint": "U+00E4",
+      "character": "ä",
+      "name": "LATIN SMALL LETTER A WITH DIAERESIS",
+      "glyph": "adieresis",
+      "glyph_id": 13874,
+      "new": true,
+      "has_ink": true
+    },
+    {
+      "codepoint": "U+00F6",
+      "character": "ö",
+      "name": "LATIN SMALL LETTER O WITH DIAERESIS",
+      "glyph": "odieresis",
+      "glyph_id": 13875,
+      "new": true,
+      "has_ink": true
+    },
+    {
       "codepoint": "U+00F7",
       "character": "÷",
       "name": "DIVISION SIGN",
       "glyph": "divide",
       "glyph_id": 104,
       "new": false,
+      "has_ink": true
+    },
+    {
+      "codepoint": "U+00FC",
+      "character": "ü",
+      "name": "LATIN SMALL LETTER U WITH DIAERESIS",
+      "glyph": "udieresis",
+      "glyph_id": 13876,
+      "new": true,
       "has_ink": true
     },
     {
@@ -1847,6 +1910,15 @@
       "has_ink": true
     },
     {
+      "codepoint": "U+1E9E",
+      "character": "ẞ",
+      "name": "LATIN CAPITAL LETTER SHARP S",
+      "glyph": "uni1E9E",
+      "glyph_id": 13878,
+      "new": true,
+      "has_ink": true
+    },
+    {
       "codepoint": "U+2018",
       "character": "‘",
       "name": "LEFT SINGLE QUOTATION MARK",
@@ -1968,7 +2040,7 @@
       "character": "₮",
       "name": "TUGRIK SIGN",
       "glyph": "uni20AE",
-      "glyph_id": 13871,
+      "glyph_id": 13879,
       "new": true,
       "has_ink": true
     },

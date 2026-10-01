@@ -1,9 +1,9 @@
 {
   "family": "Talyn Brush",
-  "version": "0.200",
+  "version": "0.300",
   "upstream_sha256": "98e3c5323f813ff6a61486af27aa49073262686bf336eacb77b024fa624254bf",
   "original_characters": 11789,
-  "characters": 11863,
+  "characters": 11871,
   "added_characters": [
     {
       "codepoint": "U+0410",
@@ -510,6 +510,62 @@
       "construction": "и with the matching original-brush diacritic and clear separation."
     },
     {
+      "codepoint": "U+00C4",
+      "character": "Ä",
+      "glyph": "uni00C4",
+      "advance": 500,
+      "construction": "Original Latin A with optically placed native brush dots; original advance."
+    },
+    {
+      "codepoint": "U+00D6",
+      "character": "Ö",
+      "glyph": "uni00D6",
+      "advance": 410,
+      "construction": "Original Latin O with optically placed native brush dots; original advance."
+    },
+    {
+      "codepoint": "U+00DC",
+      "character": "Ü",
+      "glyph": "uni00DC",
+      "advance": 449,
+      "construction": "Original Latin U with optically placed native brush dots; original advance."
+    },
+    {
+      "codepoint": "U+00E4",
+      "character": "ä",
+      "glyph": "uni00E4",
+      "advance": 360,
+      "construction": "Original Latin a with optically placed native brush dots; original advance."
+    },
+    {
+      "codepoint": "U+00F6",
+      "character": "ö",
+      "glyph": "uni00F6",
+      "advance": 290,
+      "construction": "Original Latin o with optically placed native brush dots; original advance."
+    },
+    {
+      "codepoint": "U+00FC",
+      "character": "ü",
+      "glyph": "uni00FC",
+      "advance": 340,
+      "construction": "Original Latin u with optically placed native brush dots; original advance."
+    },
+    {
+      "codepoint": "U+00DF",
+      "character": "ß",
+      "glyph": "uni00DF",
+      "advance": 449,
+      "construction": "Long-s head and falling stroke joined to a native s; open lower bowl."
+    },
+    {
+      "codepoint": "U+1E9E",
+      "character": "ẞ",
+      "glyph": "uni1E9E",
+      "advance": 503,
+      "construction": "Broader capital sharp S with a lower cap-height roof, distinct from B and SS."
+    },
+    {
       "codepoint": "U+20AE",
       "character": "₮",
       "glyph": "uni20AE",
@@ -527,7 +583,7 @@
   "alphabet_upper": "АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ",
   "alphabet_lower": "абвгдеёжзийклмноөпрстуүфхцчшщъыьэюя",
   "files": {
-    "TalynBrush-Regular.ttf": "7535a1a728ba5d102da87efed1b2c238bddb74210175c2be68f78360c0ca6f48",
-    "TalynBrush-Regular.woff2": "3bfab25be8928c124b45c33f5d5a325d831dc8215eb8472d186ae857904c1de4"
+    "TalynBrush-Regular.ttf": "2354c4d72f99dd5c1cbbdadd0802e7de92c239d36dc2b00b1485e66a3c95c7a0",
+    "TalynBrush-Regular.woff2": "f20eabac7b7998bc81f89eeba3a91b7315192a8d4dfd774597fe0c7c2242ca30"
   }
 }

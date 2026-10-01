@@ -74,6 +74,12 @@ feature mark {
   pos base uni044D <anchor 157 361> mark @TOP;
   pos base uni044E <anchor 232 383> mark @TOP;
   pos base uni044F <anchor 178 392> mark @TOP;
+  pos base A <anchor 246 595> mark @TOP;
+  pos base O <anchor 204 445> mark @TOP;
+  pos base U <anchor 229 480> mark @TOP;
+  pos base a <anchor 167 427> mark @TOP;
+  pos base o <anchor 147 356> mark @TOP;
+  pos base u <anchor 175 366> mark @TOP;
 } mark;
 feature kern {
   pos uni0422 uni0410 -30;

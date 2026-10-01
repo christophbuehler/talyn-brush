@@ -85,7 +85,7 @@ def render():
                                                'pages':pages,'characters':manifest},ensure_ascii=False,indent=2)+'\n')
     (OUT/'charset.txt').write_text('\n'.join(f"{m['codepoint']}\t{m['character']}\t{m['name']}" for m in manifest)+'\n')
     im=Image.new('RGB',(1680,1260),'white');d=ImageDraw.Draw(im)
-    heading(d,'Talyn Brush / Mongolian Cyrillic','35 letters, both cases. Original Latin proportions, new Cyrillic outlines. Preview 0.200.',1680)
+    heading(d,'Talyn Brush / Mongolian Cyrillic','35 letters, both cases. Original Latin proportions, new Cyrillic outlines. Preview 0.300.',1680)
     for i,(upper,lower) in enumerate(zip(UPPER,LOWER)):
         x=45+(i%7)*231;y=135+(i//7)*190
         if upper in 'ӨҮ':d.rectangle((x-5,y-4,x+211,y+168),fill=WASH)
@@ -103,16 +103,17 @@ def render():
     draw_text(im,(710,580),'Аа Бб Вв Гг Дд Ее Ёё Жж Зз',72)
     draw_text(im,(710,685),'Ии Йй Кк Лл Мм Нн Оо Өө Пп',72)
     draw_text(im,(70,892),'Hello, Mongolia!   안녕하세요',105)
-    d.text((70,1044),'11,863 characters  /  TTF + WOFF2  /  SIL Open Font License 1.1',font=label(18),fill=QUIET)
+    d.text((70,1044),'11,871 characters  /  TTF + WOFF2  /  SIL Open Font License 1.1',font=label(18),fill=QUIET)
     save(im,OUT/'preview.png')
     word_proof()
+    german_proof()
     print(f'Rendered all {len(cps):,} mappings, {len(pages)} detail sheets, and Cyrillic proofs.')
 
 def word_proof():
     """Phrase rhythm, recognizability and joined outlines at display sizes."""
     im=Image.new('RGB',(1800,1600),'white');d=ImageDraw.Draw(im)
     heading(d,'Talyn Brush / Handwritten Cyrillic',
-            'Revision 0.200. Real brush contours, cursive lowercase, and the unchanged original Latin for comparison.',1800)
+            'Revision 0.300. Real brush contours, cursive lowercase, and the unchanged original Latin for comparison.',1800)
     for y,text,size in [(150,'Өдрөө тэмдэглээрэй',190),
                         (350,'Монголын сайхан орон',162),
                         (535,'Өглөөний нар, үдшийн салхи.',132),
@@ -126,5 +127,21 @@ def word_proof():
         d.text((50,y+12),f'{size} px',font=label(17),fill=QUIET)
         draw_text(im,(170,y),phrase,size)
     save(im,OUT/'words.png')
+
+def german_proof():
+    im=Image.new('RGB',(1850,1430),'white');d=ImageDraw.Draw(im)
+    heading(d,'Talyn Brush / German',
+            'Revision 0.300. Original Latin letters, native brush dots, and sharp S. NFC and NFD are both tested.',1850)
+    for y,text,size in [(120,'Ää  Öö  Üü  ß  ẞ',215),
+                        (360,'Grüße aus Zürich!',182),
+                        (555,'Schöne Grüße, süße Träume.',156),
+                        (740,'Äpfel, Öl und Übermut.',155),
+                        (950,'STRAẞE   Straße   groß   großartig',115)]:
+        draw_text(im,(50,y),text,size)
+    d.line((50,1090,1800,1090),fill=WASH,width=2)
+    for y,size in [(1120,96),(1240,48),(1340,24)]:
+        d.text((50,y+12),f'{size} px',font=label(17),fill=QUIET)
+        draw_text(im,(170,y),'ÄÖÜ äöü ß ẞ  Schöne Grüße aus Zürich!',size)
+    save(im,OUT/'german.png')
 
 if __name__=='__main__':render()

@@ -7,13 +7,13 @@ import os
 import shutil
 import zipfile
 ROOT=Path(__file__).resolve().parents[1]
-VERSION='v0.2.0'
+VERSION='v0.3.0'
 
 def package():
     build=ROOT/'build';build.mkdir(exist_ok=True)
     files=['fonts/TalynBrush-Regular.ttf','fonts/TalynBrush-Regular.woff2','fonts/manifest.json',
            'OFL.txt','FONTLOG.txt','README.md','docs/OFL-FAQ.txt','docs/DESIGN.md','docs/PROVENANCE.md',
-           'specimen/cyrillic.png','specimen/preview.png','specimen/words.png']
+           'specimen/cyrillic.png','specimen/preview.png','specimen/words.png','specimen/german.png']
     target=build/f'TalynBrush-{VERSION}.zip'
     with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as archive:
         for rel in sorted(files):

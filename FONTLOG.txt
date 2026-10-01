@@ -3,6 +3,17 @@ FONTLOG for Talyn Brush
 Talyn Brush is an independent modified version of Nanum Brush Script.
 It is distributed under the SIL Open Font License 1.1. See OFL.txt.
 
+2026-10-01 — Talyn Brush 0.300 (release tag v0.3.0; preview)
+- Added German Ä Ö Ü ä ö ü ß ẞ, all missing from the original font.
+- Composed umlauts from original Latin bodies and native brush dots, with
+  unchanged base advances and optical mark positions shared with GPOS.
+- Added lowercase/capital sharp S using original long-s and s movements.
+- Added German proof images, a Deutsch tester sample, normalization,
+  glyph-coverage, metric, accent-contour and small-size rendering checks.
+- Complete cmap now contains 11,871 mappings: 11,789 original and 82 added.
+- Retained the revised Cyrillic outlines from 0.200 and every upstream glyph.
+- Updated derivative copyright wording to credit German as well as Cyrillic.
+
 2026-10-01 — Talyn Brush 0.200 (release tag v0.2.0; preview)
 - Reworked the Cyrillic design after feedback on rigid miniature capitals.
 - Introduced handwritten lowercase forms for и, п, т, д and ш, and reshaped
@@ -38,7 +49,7 @@ Original work: Copyright (c) 2010 NHN Corporation.
 Font design: Sandoll Communications Inc.; original name table credits
 Kwak Doo-yul and Nicolas Noh.
 
-Cyrillic extensions and build tooling: Copyright (c) 2026 Christoph Bühler.
+Cyrillic and German extensions and build tooling: Copyright (c) 2026 Christoph Bühler.
 No endorsement by the original authors is claimed.
 
 Project: https://github.com/christophbuehler/talyn-brush

@@ -15,6 +15,7 @@ UPSTREAM = ROOT/'upstream/NanumBrushScript-Regular.ttf'
 # Deliberately independent of the construction source: the 35-letter alphabet.
 UPPER = 'АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ'
 LOWER = 'абвгдеёжзийклмноөпрстуүфхцчшщъыьэюя'
+GERMAN = 'ÄÖÜäöüßẞ'
 
 @pytest.fixture(scope='module')
 def font(): return TTFont(FONT)
@@ -34,7 +35,7 @@ def test_upstream_hash_and_license():
     derived=(ROOT/'OFL.txt').read_text()
     assert original.split('PREAMBLE')[1] == derived.split('PREAMBLE')[1]
     assert original.split('This Font Software')[0].strip() in derived
-    assert 'Cyrillic extensions and build tooling copyright (c) 2026 Christoph Bühler.' in derived
+    assert 'Cyrillic and German extensions and build tooling copyright (c) 2026 Christoph Bühler.' in derived
 
 
 def test_original_characters_and_every_original_glyph_preserved(font, original):
@@ -57,7 +58,7 @@ def test_complete_mongolian_alphabet(font):
         assert 200 <= font['hmtx'][cmap[ord(c)]][0] <= 700, c
         assert g.yMax <= font['OS/2'].usWinAscent, c
         assert -g.yMin <= font['OS/2'].usWinDescent, c
-    assert len(cmap) == 11863
+    assert len(cmap) == 11871
     for sub in font['cmap'].tables:
         if sub.isUnicode():
             for c in UPPER+LOWER: assert sub.cmap[ord(c)] == cmap[ord(c)]
@@ -84,6 +85,7 @@ def test_reserved_names_removed_from_every_primary_name(font):
     'Съешь ещё этих мягких французских булок, да выпей чаю.',
     'Hello, Mongolia! 안녕하세요', 'Өдрөө тэмдэглээрэй',
     'Монгол сайхан шүү. Бб Ьь Пп Гг Шш Щщ Фф Жж Яя',
+    GERMAN, 'Schöne Grüße aus Zürich! Äpfel, Öl und Übermut.', 'STRAẞE Straße groß süß',
 ])
 def test_shaping_without_missing_glyphs(text):
     glyphs=shape(text)
@@ -92,7 +94,7 @@ def test_shaping_without_missing_glyphs(text):
 
 
 def test_normalized_forms_are_identical():
-    text='ЁёЙй ёлка сайн'
+    text='ЁёЙй ёлка сайн ÄÖÜ äöü Schöne Grüße'
     assert shape(text) == shape(unicodedata.normalize('NFD',text))
 
 
@@ -118,8 +120,8 @@ def test_all_new_letters_have_distinct_raster_forms(size):
         b=face.glyph.bitmap
         assert b.width and b.rows and any(b.buffer), c
         return b.width,b.rows,bytes(b.buffer)
-    for c in UPPER+LOWER: raster(c)
-    for a,b in [('О','Ө'),('о','ө'),('У','Ү'),('у','ү'),('И','Й'),('и','й'),('Е','Ё'),('е','ё'),('Б','Ь'),('б','ь'),('Ш','Щ'),('ш','щ'),('П','Г'),('п','г')]:
+    for c in UPPER+LOWER+GERMAN: raster(c)
+    for a,b in [('О','Ө'),('о','ө'),('У','Ү'),('у','ү'),('И','Й'),('и','й'),('Е','Ё'),('е','ё'),('Б','Ь'),('б','ь'),('Ш','Щ'),('ш','щ'),('П','Г'),('п','г'),('A','Ä'),('a','ä'),('O','Ö'),('o','ö'),('U','Ü'),('u','ü'),('B','ẞ'),('b','ß'),('ß','ẞ')]:
         assert raster(a) != raster(b), (a,b)
 
 
@@ -141,7 +143,7 @@ def test_woff2_matches_ttf(font):
     web=TTFont(ROOT/'fonts/TalynBrush-Regular.woff2')
     assert web.getBestCmap() == font.getBestCmap()
     assert web['hmtx'].metrics == font['hmtx'].metrics
-    for c in UPPER+LOWER:
+    for c in UPPER+LOWER+GERMAN:
         gn=font.getBestCmap()[ord(c)]
         p,q=RecordingPen(),RecordingPen()
         font.getGlyphSet()[gn].draw(p);web.getGlyphSet()[gn].draw(q)
@@ -174,3 +176,41 @@ def test_joined_strokes_and_open_counters(font):
         # TrueType outer contours run clockwise, counter contours anticlockwise.
         assert sum(a<0 for a in areas)==1, (char,areas)
         assert sum(a>0 for a in areas)==holes, (char,areas)
+
+
+def test_german_letters_and_umlaut_metrics(font,original):
+    cmap=font.getBestCmap();source=original.getBestCmap()
+    for char in GERMAN:
+        assert ord(char) in cmap
+        glyph=font['glyf'][cmap[ord(char)]]
+        assert glyph.numberOfContours>0
+        assert glyph.yMax<=font['OS/2'].usWinAscent
+        for sub in font['cmap'].tables:
+            if sub.isUnicode(): assert sub.cmap[ord(char)]==cmap[ord(char)]
+    for char,base in zip('ÄÖÜäöü','AOUaou'):
+        accent=font['glyf'][cmap[ord(char)]];body=original['glyf'][source[ord(base)]]
+        assert font['hmtx'][cmap[ord(char)]][0]==original['hmtx'][source[ord(base)]][0]
+        # Two separate dots above the intact base, with room for the accent.
+        assert accent.numberOfContours==body.numberOfContours+2
+        assert accent.yMax>body.yMax+65
+    assert shape('ÄÖÜäöü')==shape(unicodedata.normalize('NFD','ÄÖÜäöü'))
+
+
+def test_latin_diaeresis_attachment_without_precomposition():
+    # Force the decomposed shaping path by removing precomposed alternatives
+    # from an in-memory test font; ordinary NFC tests alone would bypass GPOS.
+    from io import BytesIO
+    f=TTFont(FONT)
+    for sub in f['cmap'].tables:
+        for char in 'ÄÖÜäöü': sub.cmap.pop(ord(char),None)
+    data=BytesIO();f.save(data)
+    shaper=hb.Font(hb.Face(data.getvalue()));shaper.scale=(1000,1000)
+    expected={'A':(246,595),'O':(204,445),'U':(229,480),
+              'a':(167,427),'o':(147,356),'u':(175,366)}
+    for base,(x,y) in expected.items():
+        buf=hb.Buffer();buf.add_str(base+'\u0308');buf.guess_segment_properties();buf.language='de'
+        hb.shape(shaper,buf)
+        assert len(buf.glyph_infos)==2
+        a,mark=buf.glyph_positions
+        assert mark.x_advance==0
+        assert (a.x_advance+mark.x_offset,mark.y_offset)==(x,y)

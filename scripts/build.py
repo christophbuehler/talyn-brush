@@ -12,13 +12,13 @@ from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.pens.cu2quPen import Cu2QuPen
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.feaLib.builder import addOpenTypeFeaturesFromString
-from sources.cyrillic import recipes, UPPER, LOWER
+from sources.cyrillic import recipes, UPPER, LOWER, UMLAUTS
 
 ROOT = Path(__file__).resolve().parents[1]
 UPSTREAM = ROOT / 'upstream/NanumBrushScript-Regular.ttf'
 UPSTREAM_SHA = '98e3c5323f813ff6a61486af27aa49073262686bf336eacb77b024fa624254bf'
 FAMILY = 'Talyn Brush'
-VERSION = '0.200'
+VERSION = '0.300'
 EPOCH = 3873657600  # 2026-10-01 00:00:00 UTC, seconds since 1904-01-01
 
 def name(c):
@@ -67,12 +67,12 @@ def build():
     license_text = (ROOT / 'OFL.txt').read_text()
     original_copyright = 'Copyright © 2010 NHN Corporation. All rights reserved. Font designed by Sandoll Communications Inc.'
     fields = {
-        0: original_copyright + '\nCyrillic extensions and build tooling copyright (c) 2026 Christoph Bühler.',
+        0: original_copyright + '\nCyrillic and German extensions and build tooling copyright (c) 2026 Christoph Bühler.',
         1:FAMILY, 2:'Regular', 3:f'{VERSION};TALY;TalynBrush-Regular',
         4:FAMILY+' Regular', 5:'Version '+VERSION, 6:'TalynBrush-Regular',
         8:'Talyn Brush Project',
-        9:'Original: Kwak Doo-yul; Nicolas Noh; Sandoll Communications Inc. Cyrillic extension: Talyn Brush Project.',
-        10:'An independent OFL derivative of Nanum Brush Script with Mongolian Cyrillic. Preview release; native-speaker review is welcome. No endorsement by the original authors.',
+        9:'Original: Kwak Doo-yul; Nicolas Noh; Sandoll Communications Inc. Cyrillic and German extensions: Talyn Brush Project.',
+        10:'An independent OFL derivative of Nanum Brush Script with Mongolian Cyrillic and German letters. Preview release; native-speaker review is welcome. No endorsement by the original authors.',
         11:'https://github.com/christophbuehler/talyn-brush',
         12:'https://github.com/christophbuehler/talyn-brush',
         13:license_text, 14:'https://openfontlicense.org',
@@ -98,6 +98,8 @@ def build():
         glyph = font['glyf'][name(c)]
         x,y = anchors.get(c,(round(drawings[c].width/2),getattr(glyph,'yMax',350)+66))
         fea.append(f'  pos base {name(c)} <anchor {x} {y}> mark @TOP;')
+    for base,x,y in UMLAUTS.values():
+        fea.append(f'  pos base {cmap[ord(base)]} <anchor {x} {y}> mark @TOP;')
     fea.extend(['} mark;', 'feature kern {'])
     for left,right,kern in [('Т','А',-30),('Т','О',-20),('Т','о',-25),('Т','а',-25),('Г','А',-22),('Г','о',-22),('У','А',-22),('У','о',-18),('А','Т',-20),('Л','Т',-15),('Т','Ө',-20),('Т','ө',-25)]:
         fea.append(f'  pos {name(left)} {name(right)} {kern};')

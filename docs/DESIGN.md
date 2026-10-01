@@ -12,6 +12,14 @@ Other letters need more than a Latin lookalike. The two bowls of **ф** meet on 
 
 All outline material comes from the archived Nanum font. Editable recipes crop, reshape, reflect, and combine actual source contours; no other typeface supplies glyphs or outline fragments. Each component is geometrically unioned before TrueType conversion. This matters when reflecting outlines: merely concatenating opposite-winding contours can punch holes through a join. Regression checks verify connected bodies and the intended number of counters in the affected forms.
 
+## Revision 0.300: German
+
+ÄÖÜ and äöü use the original AOU/aou bodies, unchanged advances, and two native i dots. Their accent positions are adjusted to each irregular body height and shared with the Latin GPOS anchors. Normalization tests compare NFC with base-plus-U+0308 sequences. The accents add two separate contours without changing the body's counters.
+
+The sharp S combines a long-s head adapted from f (without its crossbar) with the original s movement. Its lower bowl stays open. The capital ẞ is broader and brought to cap height. It has its own Unicode mapping; no automatic substitution of SS is introduced. This follows the [Unicode description of ß's ligature structures and capital mapping](https://www.unicode.org/charts/nameslist/n_0080.html).
+
+A [German proof](../specimen/german.png) covers all eight added characters, words such as “Grüße”, “Zürich” and “Straße”, and 24/48/96 px samples. Full Latin Extended coverage is not claimed.
+
 ## Relationship to the original
 
 The source varies its letter heights, pressure, terminals, proportions, and baseline. The revision follows those variations instead of imposing one uniform stroke or geometric grid. It remains in the original 1000-unit em. Shared skeletons such as А/A, В/B, Е/E, Н/H, О/O, Р/P, С/C, and Х/X use the original brush outlines.

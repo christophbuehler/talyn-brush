@@ -3,7 +3,7 @@ with Reserved Font Name Nanum, Naver Nanum, NanumGothic, Naver
 NanumGothic, NanumMyeongjo, Naver NanumMyeongjo, NanumBrush, Naver
 NanumBrush, NanumPen, Naver NanumPen.
 
-Cyrillic extensions and build tooling copyright (c) 2026 Christoph Bühler.
+Cyrillic and German extensions and build tooling copyright (c) 2026 Christoph Bühler.
 No additional Reserved Font Names are declared.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.

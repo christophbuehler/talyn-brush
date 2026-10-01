@@ -12,6 +12,9 @@ from fontTools.pens.transformPen import TransformPen
 UPPER = 'АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ'
 LOWER = UPPER.lower()
 IDENTITY = (1, 0, 0, 1, 0, 0)
+# Optical dot positions are shared by precomposed outlines and GPOS marks.
+UMLAUTS = {'Ä':('A',246,595), 'Ö':('O',204,445), 'Ü':('U',229,480),
+           'ä':('a',167,427), 'ö':('o',147,356), 'ü':('u',175,366)}
 
 
 @dataclass
@@ -218,6 +221,15 @@ def recipes():
                                       ('Й','И',breve,230,507),('й','и',breve,178,387)]:
         put(c,Drawing(-2).child(g[base]).child(mark,(1,0,0,1,center,height)),
             f'{base} with the matching original-brush diacritic and clear separation.')
+    for c,(base,center,height) in UMLAUTS.items():
+        put(c,Drawing(0).native(base).child(dots,(1,0,0,1,center,height)),
+            f'Original Latin {base} with optically placed native brush dots; original advance.')
+    d=Drawing(449).fragment('f',crop=(80,241,300,600))
+    d.fragment('I',fit=(110,-45,182,294))
+    d.fragment('s',warp=lambda x,y:(x-35*max(0,min(1,(y-140)/110)),y),fit=(192,-13,409,459))
+    put('ß',d,'Long-s head and falling stroke joined to a native s; open lower bowl.')
+    put('ẞ',Drawing(503).child(d,(1.13,0,0,.84,0,18)),
+        'Broader capital sharp S with a lower cap-height roof, distinct from B and SS.')
     d=Drawing(490).native('T');dash(d,(97,155,350,187));dash(d,(99,66,351,99))
     put('₮',d,'Original T with two separate native brush dashes across the stem.')
     put('\u00a0',Drawing(250),'Nonbreaking space, same advance as upstream space.')

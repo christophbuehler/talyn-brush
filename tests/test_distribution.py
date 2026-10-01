@@ -11,10 +11,10 @@ def test_atlas_covers_exactly_the_built_cmap():
     data=json.loads((ROOT/'specimen/coverage.json').read_text())
     entries=data['characters']; cps=[int(x['codepoint'][2:],16) for x in entries]
     assert cps==sorted(font.getBestCmap())
-    assert data['count']==len(cps)==11863
+    assert data['count']==len(cps)==11871
     assert sum(p['count'] for p in data['pages'])==len(cps)
     assert len(data['pages'])==31
-    assert sum(x['new'] for x in entries)==74
+    assert sum(x['new'] for x in entries)==82
     assert all(x['glyph_id']>0 for x in entries)
     for x in entries:
         cp=int(x['codepoint'][2:],16)
@@ -27,9 +27,9 @@ def test_atlas_covers_exactly_the_built_cmap():
         with Image.open(ROOT/'specimen/pages'/page['file']) as image:image.verify()
 
 def test_release_package_includes_license_and_exact_font():
-    with zipfile.ZipFile(ROOT/'build/TalynBrush-v0.2.0.zip') as archive:
-        prefix='TalynBrush-v0.2.0/'
-        for path in ['OFL.txt','FONTLOG.txt','docs/OFL-FAQ.txt','fonts/TalynBrush-Regular.ttf','fonts/TalynBrush-Regular.woff2','specimen/words.png']:
+    with zipfile.ZipFile(ROOT/'build/TalynBrush-v0.3.0.zip') as archive:
+        prefix='TalynBrush-v0.3.0/'
+        for path in ['OFL.txt','FONTLOG.txt','docs/OFL-FAQ.txt','fonts/TalynBrush-Regular.ttf','fonts/TalynBrush-Regular.woff2','specimen/words.png','specimen/german.png']:
             assert archive.read(prefix+path)==(ROOT/path).read_bytes()
         assert not any('NanumBrushScript-Regular.ttf' in p for p in archive.namelist())
 
